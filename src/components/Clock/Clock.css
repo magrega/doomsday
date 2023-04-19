@@ -1,0 +1,33 @@
+.clock-container {
+    margin-top: 128px;
+    font-family: 'Prata', 'Haskoy', serif;
+    font-size: 60px;
+}
+
+.undertext {
+    margin-top: 6px;
+    margin-bottom: 142px;
+    font-family: 'Haskoy', serif;
+}
+
+.clock-container p {
+    margin: 0;
+}
+
+@media (max-width: 1023px) {
+    .clock-container {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 430px) {
+    .clock-container {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    .clock-container {
+        font-size: 21px;
+    }
+}
