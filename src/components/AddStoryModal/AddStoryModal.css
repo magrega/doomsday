@@ -4,19 +4,19 @@
 
 .modal-window.MuiBox-root {
     position: absolute;
+    max-width: 914px;
+    padding: 30px;
+    width: 95%;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    width: 95%;
-    max-width: 1500px;
     color: #C9E1C5;
     background: #1E212C;
     border: 1px solid #C9E1C5;
     border-radius: 30px;
-    padding: 30px;
 }
 
 .modal-window__top {
@@ -47,5 +47,43 @@
 }
 
 .modal-window a {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 190px;
+    margin-bottom: 34px;
+}
+
+.modal-window a svg {
+    margin-left: 5px;
+}
+
+.modal-window span {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+@media (max-width: 430px) {
+    .modal-window.MuiBox-root {
+        padding: 20px;
+    }
+    
+    .modal-window h3 {
+        font-size: 24px;
+    }
+
+    .modal-window input {
+        font-size: 16px;
+        padding: 15px 10px;
+    }
+
+    .modal-window a {
+        max-width: 100%;
+    }
+
+    .modal-window span {
+        font-size: 16px;
+        color: #818980;
+    }
+    
 }
