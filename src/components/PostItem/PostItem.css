@@ -15,15 +15,6 @@
     margin: 16px 0;
 }
 
-.socials-container, .postitem-card ul {
-    display: flex;
-    align-items: center;
-}
-
-.postitem-card ul {
-    margin-top: 4px;
-}
-
 .postitem-card__share-copy {
     cursor: pointer;
     transition: all .2s;

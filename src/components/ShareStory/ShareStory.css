@@ -1,0 +1,8 @@
+.socials-container, .share-story__list {
+    display: flex;
+    align-items: center;
+}
+
+ .share-story__list {
+    margin-top: 4px;
+}
