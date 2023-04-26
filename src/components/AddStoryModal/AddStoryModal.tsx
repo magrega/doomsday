@@ -1,7 +1,6 @@
 import { Box, Modal } from '@mui/material';
 import { FC, useState } from 'react';
 import ResultStoryModal from '../ResultStoryModal/ResultStoryModal';
-
 import './AddStoryModal.css';
 
 const AddStoryModal: FC = () => {

@@ -4,19 +4,13 @@ import ShareStory from '../ShareStory/ShareStory';
 import { getRandomPost } from '../../services/getPosts';
 import { TPost } from '../../services/getPosts';
 import Spinner from '../Spinner/Spinner';
-
 //uses styles from AddStoryModal.css
 
 const ResultStoryModal: FC = () => {
   const [open, setOpen] = useState(false);
   const [post, setPost] = useState<TPost | undefined>(undefined);
 
-  const handleOpen = (e: SyntheticEvent ) => {
-    e.preventDefault();
-    setOpen(true);
-  };
   const handleClose = () => setOpen(false);
-
   const generatePost = (e: SyntheticEvent ) => {
     e.preventDefault();
     getRandomPost().then(post => setPost(post));

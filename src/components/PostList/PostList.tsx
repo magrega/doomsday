@@ -32,15 +32,15 @@ const PostList: FC = () => {
             .catch(e => {
                 console.log(e.message);
             })
-            console.log(postsData);
-            
+        console.log(postsData);
+
     }, []);
 
     useEffect(() => { updatePostsFromServer() }, [updatePostsFromServer]);
 
     if (loading) {
-        return <Spinner/>;
-      }
+        return <Spinner />;
+    }
 
     return (
         <div className="post-list">
@@ -58,14 +58,11 @@ const PostList: FC = () => {
                     grabCursor={true}
                     touchMoveStopPropagation={true}
                 >
-                    {
-                        postsData?.posts.map((post: TPost) => {   
-                            return <SwiperSlide>
-                                <PostItem title={post.title} body={post.body} userId={post.userId} />
-                            </SwiperSlide>
-                        })
-                    }
-
+                    {postsData?.posts.map((post: TPost) => {
+                        return <SwiperSlide>
+                            <PostItem title={post.title} body={post.body} userId={post.userId} />
+                        </SwiperSlide>
+                    })}
                 </Swiper>
             </div>
         </div>
