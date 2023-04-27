@@ -57,8 +57,8 @@ const PostList: FC = () => {
                     touchMoveStopPropagation={true}
                 >
                     {postsData?.posts.map((post: TPost) => {
-                        return <SwiperSlide>
-                            <PostItem title={post.title} body={post.body} userId={post.userId} />
+                        return <SwiperSlide key={post.id}>
+                            <PostItem key={post.id} title={post.title} body={post.body} userId={post.userId} />
                         </SwiperSlide>
                     })}
                 </Swiper>

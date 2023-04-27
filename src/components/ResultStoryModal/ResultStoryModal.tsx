@@ -33,7 +33,7 @@ const ResultStoryModal: FC = () => {
       >
         <Box className="modal-window">
         <div className="modal-window__top">
-              <h3>share your story for publishing in our feed</h3>
+              <h3>share your story in our feed</h3>
             <svg onClick={handleClose} width="20" height="25" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="1.35681" width="26.3654" height="1.31827" transform="rotate(45 1.35681 0)" fill="#C8EDC1" />
               <rect x="0.424683" y="18.6431" width="26.3654" height="1.31827" transform="rotate(-45 0.424683 18.6431)" fill="#C8EDC1" />

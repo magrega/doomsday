@@ -16,8 +16,8 @@ export const getPosts = async (): Promise<Response> => {
 }
 
 export type TPost = {
-    body: string;
     id: number;
+    body: string;
     title: string;
     userId: number;
 }
@@ -36,10 +36,6 @@ export const getRandomPost = async (): Promise<TPost> => {
         throw new Error(`Error fetching random post: ${(e as Error).message}`);
     }
 }
-
-// export type TUser = {
-//     username: string;
-// }
 
 export const getUser = async (userId: number): Promise<{username: string}> => {
     try {
