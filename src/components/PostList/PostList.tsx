@@ -32,8 +32,6 @@ const PostList: FC = () => {
             .catch(e => {
                 console.log(e.message);
             })
-        console.log(postsData);
-
     }, []);
 
     useEffect(() => { updatePostsFromServer() }, [updatePostsFromServer]);
@@ -47,7 +45,7 @@ const PostList: FC = () => {
             <div className="post-list__menu">
                 <div className="post-list__menu-left">
                     <span>user stories</span>
-                    <span className='disabled'>last change <span className='sticker'>soon</span></span>
+                    <span className='disabled'>last change<span className='sticker'>soon</span></span>
                 </div>
                 <AddStoryModal />
             </div>

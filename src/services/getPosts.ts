@@ -33,6 +33,26 @@ export const getRandomPost = async (): Promise<TPost> => {
 
         return responsePost.json();
     } catch (e) {
-        throw new Error(`Error fetching posts: ${(e as Error).message}`);
+        throw new Error(`Error fetching random post: ${(e as Error).message}`);
     }
 }
+
+// export type TUser = {
+//     username: string;
+// }
+
+export const getUser = async (userId: number): Promise<{username: string}> => {
+    try {
+        const responsePost = await fetch(`${_api}/users/${userId}`);
+
+        if (!responsePost.ok) {
+            throw new Error(`HTTP error! status: ${responsePost.status}`);
+        }
+
+        return responsePost.json();
+    } catch (e) {
+        throw new Error(`Error fetching user: ${(e as Error).message}`);
+    }
+}
+
+
