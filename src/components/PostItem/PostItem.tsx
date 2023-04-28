@@ -1,8 +1,9 @@
-import { FC, useState, useEffect, useCallback } from 'react';
-import { Box, Modal } from '@mui/material';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { getUser } from '../../services/getPosts';
+import ModalBase from '../ModalBase/ModalBase';
 import ShareStory from '../ShareStory/ShareStory';
 import './PostItem.css';
+import GeneratedResultParagraph from '../GeneratedResultParagraph/GeneratedResultParagraph';
 
 interface IPostItemProps {
     title: string;
@@ -17,17 +18,12 @@ const PostItem: FC<IPostItemProps> = ({ title, body, userId }) => {
 
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
-
-
+    const truncate = (str: string, length: number) => str.length > length ? str.slice(0, length) + '...' : str;
     const updateUser = useCallback(() => {
         getUser(userId).then(user => setUser(user.username));
     }, [userId])
 
-    useEffect(() => {
-        updateUser()
-    }, [updateUser])
-
-    const truncate = (str: string, length: number) => str.length > length ? str.slice(0, length) + '...' : str;
+    useEffect(() => { updateUser() }, [updateUser]);
 
     return (
         <div className="postitem-card">
@@ -37,24 +33,10 @@ const PostItem: FC<IPostItemProps> = ({ title, body, userId }) => {
                 <a href='https://www.facebook.com/ElonMuskOfficiaI' target='_blank' rel='noreferrer' className='postitem-card__author socials-container'><span>{user}</span></a>
             </div>
             <ShareStory />
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="child-modal-title"
-                aria-describedby="child-modal-description"
-            >
-                <Box className="modal-window">
-                    <div className="modal-window__top">
-                        <h3>share your story in our feed</h3>
-                        <svg onClick={handleClose} width="20" height="25" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="1.35681" width="26.3654" height="1.31827" transform="rotate(45 1.35681 0)" fill="#C8EDC1" />
-                            <rect x="0.424683" y="18.6431" width="26.3654" height="1.31827" transform="rotate(-45 0.424683 18.6431)" fill="#C8EDC1" />
-                        </svg>
-                    </div>
-                    <p className='generate-result'>{body}</p>
-                    <ShareStory />
-                </Box>
-            </Modal>
+            <ModalBase open={open} handleClose={handleClose}>
+                <GeneratedResultParagraph body={body}/>
+                <ShareStory />
+            </ModalBase>
         </div>
     );
 };

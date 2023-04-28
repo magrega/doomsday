@@ -43,19 +43,19 @@
 
 .postitem-card__author::before,
 .postitem-card__share-fb::before {
-    background-image: url('../../../public/img/icons/fb.svg');
+    background-image: url('../../assets/icons/fb.svg');
 }
 
 .postitem-card__share-tw::before {
-    background-image: url('../../../public/img/icons/tw.svg');
+    background-image: url('../../assets/icons/tw.svg');
 }
 
 .postitem-card__share-inst::before {
-    background-image: url('../../../public/img/icons/inst.svg');
+    background-image: url('../../assets/icons/inst.svg');
 }
 
 .postitem-card__share-copy::before {
-    background-image: url('../../../public/img/icons/copy.svg');
+    background-image: url('../../assets/icons/copy.svg');
 }
 
 ul>li {

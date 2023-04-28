@@ -1,0 +1,46 @@
+.MuiBackdrop-root {
+    backdrop-filter: blur(5px);
+}
+
+.modal-window.MuiBox-root {
+    position: absolute;
+    max-width: 914px;
+    padding: 30px;
+    width: 95%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #C9E1C5;
+    background: #1E212C;
+    border: 1px solid #C9E1C5;
+    border-radius: 30px;
+}
+
+.modal-window__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-window__top img {
+    cursor: pointer;
+}
+
+.modal-window h3 {
+    display: inline;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+@media (max-width: 430px) {
+    .modal-window.MuiBox-root {
+        padding: 20px;
+    }
+    
+    .modal-window h3 {
+        font-size: 24px;
+    }    
+}

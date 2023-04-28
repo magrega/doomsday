@@ -1,4 +1,4 @@
-.modal-window input {
+.modal-window .generate-result {
     margin: 34px 0;
     padding: 18px 16px;
     width: 100%;
@@ -9,20 +9,10 @@
     border-radius: 16px;
 }
 
-.modal-window span {
-    font-size: 20px;
-    font-weight: 400;
-}
-
 @media (max-width: 430px) {
-    .modal-window input {
+    .modal-window .generate-result {
         font-size: 16px;
         padding: 15px 10px;
-    }
-
-    .modal-window span {
-        font-size: 16px;
-        color: #818980;
     }
     
 }
