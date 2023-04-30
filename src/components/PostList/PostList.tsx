@@ -1,11 +1,11 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useRef } from 'react';
+import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { getPosts } from '../../services/getPosts';
+import { TPost, getPosts } from '../../services/getPosts';
 import AddStoryModal from '../AddStoryModal/AddStoryModal';
+import ErrorSign from '../ErrorSign/ErrorSign';
 import PostItem from '../PostItem/PostItem';
 import Spinner from '../Spinner/Spinner';
-import { TPost } from '../../services/getPosts';
-import 'swiper/css';
 import './PostList.css';
 
 export type TPostData = {
@@ -19,26 +19,48 @@ export type TPostData = {
 
 const PostList: FC = () => {
 
-    const [postsData, setPostsData] = useState<TPostData | undefined>(undefined);
+    const [postsData, setPostsData] = useState<TPost[] | undefined>();
+    const [page, setPage] = useState(0);
+    const [loadingMorePosts, setLoadingMorePosts] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const isShowMoreRunning = useRef(false);
 
-    const updatePostsFromServer = useCallback(() => {
-        getPosts()
+    // const showMore = useCallback(() => { 
+    //     setLoadingMorePosts(true);
+    //     setPage(prevPage => prevPage + 1);
+    //     console.log("SHOWMORE");
+    // }, [setLoadingMorePosts])
+
+    const showMore = () => {
+        if (!isShowMoreRunning.current) {
+            isShowMoreRunning.current = true;
+            setLoadingMorePosts(true);
+            setPage(prevPage => prevPage + 1);
+        }
+    };
+
+    useEffect(() => {
+        getPosts(page)
             .then(newPosts => newPosts.json() as Promise<TPostData>)
             .then(newPosts => {
-                setPostsData(newPosts)
+                setPostsData(prevState => [...(prevState ?? []), ...newPosts.posts]);
+                setLoadingMorePosts(false);
                 setLoading(false);
             })
             .catch(e => {
+                setError(true);
                 console.log(e.message);
+                setLoading(false);
+                setLoadingMorePosts(false);
             })
-    }, []);
+    }, [page]);
 
-    useEffect(() => { updatePostsFromServer() }, [updatePostsFromServer]);
+    useEffect(() => {
+        isShowMoreRunning.current = false;
+    }, [postsData]);
 
-    if (loading) {
-        return <Spinner />;
-    }
+    if (loading) return <Spinner />;
 
     return (
         <div className="post-list">
@@ -55,12 +77,14 @@ const PostList: FC = () => {
                     slidesPerView={"auto"}
                     grabCursor={true}
                     touchMoveStopPropagation={true}
+                    onReachEnd={showMore}
                 >
-                    {postsData?.posts.map((post: TPost) => {
+                    {error ? <ErrorSign /> : postsData?.map((post: TPost) => {
                         return <SwiperSlide key={post.id}>
-                            <PostItem key={post.id} title={post.title} body={post.body} userId={post.userId} />
+                            <PostItem key={post.id} title={post.title} body={post.body} userId={post.userId} id={post.id} />
                         </SwiperSlide>
                     })}
+                    {loadingMorePosts && <SwiperSlide className='post-item-spinner' key={"spinner"}><Spinner /></SwiperSlide>}
                 </Swiper>
             </div>
         </div>

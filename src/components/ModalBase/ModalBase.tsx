@@ -1,7 +1,7 @@
 import { Box, Modal } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 import CrossButton from '../../assets/icons/cross.svg';
-import './ModalBase.css'
+import './ModalBase.css';
 
 interface IModalBase {
     open: boolean;

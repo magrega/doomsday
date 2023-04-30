@@ -5,9 +5,9 @@ import './NavBar.css';
 interface NavBarProps {
     text: string;
     to: string;
-  }
+}
 
-const NavBar: FC<NavBarProps> = ({text, to}) => {
+const NavBar: FC<NavBarProps> = ({ text, to }) => {
     return (
         <div className="navbar">
             <span>doomsday clock ai</span>

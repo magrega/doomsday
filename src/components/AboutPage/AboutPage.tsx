@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import NavBar from '../NavBar/NavBar';
 import Clock from '../Clock/Clock';
-import './AboutPage.css'
+import NavBar from '../NavBar/NavBar';
+import './AboutPage.css';
 
 const AboutPage: FC = () => {
     return (
         <div className='about-page'>
-            <NavBar text={"Close"} to='/'/>
+            <NavBar text={"Close"} to='/' />
             <div className="about-page__info-wrapper">
                 <div className="about-page__info">
                     <div className="about-page__info-text">
@@ -20,7 +20,7 @@ const AboutPage: FC = () => {
                         <p>*Disclaimer: The scores used in the formula were non-scientifically simulated by GPT-4 and should not be considered accurate representations of the current state of AGI development.</p>
                         <br />
                     </div>
-                <Clock />
+                    <Clock />
                 </div>
             </div>
         </div>

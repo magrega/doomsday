@@ -1,10 +1,10 @@
-import { useEffect, useState, FC } from 'react';
 import moment from 'moment';
-import'moment-duration-format';
+import 'moment-duration-format';
+import { FC, useEffect, useState } from 'react';
 import './Clock.css';
 
 const Clock: FC = () => {
-    
+
     const [clock, setClock] = useState(moment());
 
     const theEnd = moment('2050-01-01 00:00:00');

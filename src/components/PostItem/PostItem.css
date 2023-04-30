@@ -1,6 +1,11 @@
+.swiper-slide {
+    max-width: 378px;
+}
+
 .postitem-card {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin-right: 10px;
     height: 480px;
     padding: 20px;
@@ -60,4 +65,8 @@
 
 ul>li {
     margin-right: 12px;
+}
+
+.post-item-spinner {
+    width: auto;
 }

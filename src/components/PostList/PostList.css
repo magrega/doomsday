@@ -45,12 +45,12 @@
 }
 
 .post-list__postitem-view .swiper {
-   padding-left: 20px;
-} 
+    padding-left: 20px;
+}
 
-.post-list__postitem-view .swiper-slide {
-    max-width: 378px;
-} 
+.post-list__postitem-view .swiper-wrapper {
+    align-items: center;
+}
 
 @media (max-width: 768px) {
 
@@ -58,8 +58,8 @@
         margin-right: -10px;
         margin-left: -15px;
     }
-    
+
     .post-list__postitem-view .swiper {
-       padding-left: 10px;
-    } 
+        padding-left: 10px;
+    }
 }

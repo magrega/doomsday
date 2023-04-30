@@ -1,16 +1,20 @@
 
 const _api = "https://dummyjson.com";
 
-export const getPosts = async (): Promise<Response> => {
-    try {
-        const responsePosts = await fetch(`${_api}/posts?limit=10`);
+export const getPosts = async (page: number = 0): Promise<Response> => {
+    console.log(page);
+    
+      try {
+        const responsePosts = await fetch(`${_api}/posts?limit=10&skip=${page * 10}`);
 
         if (!responsePosts.ok) {
+            console.log(responsePosts);
             throw new Error(`HTTP error! status: ${responsePosts.status}`);
         }
 
         return responsePosts;
     } catch (e) {
+        console.log(e);
         throw new Error(`Error fetching posts: ${(e as Error).message}`);
     }
 }
