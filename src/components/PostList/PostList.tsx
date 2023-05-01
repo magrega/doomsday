@@ -1,6 +1,7 @@
 import { FC, useEffect, useState, useRef } from 'react';
-import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Mousewheel, FreeMode } from 'swiper';
+import 'swiper/css';
 import { TPost, getPosts } from '../../services/getPosts';
 import AddStoryModal from '../AddStoryModal/AddStoryModal';
 import ErrorSign from '../ErrorSign/ErrorSign';
@@ -75,10 +76,20 @@ const PostList: FC = () => {
                 <Swiper
                     spaceBetween={10}
                     slidesPerView={"auto"}
-                    grabCursor={true}
                     touchMoveStopPropagation={true}
                     onReachEnd={showMore}
-                >
+                    freeMode={{
+                        enabled: true,
+                        sticky: false,
+                        momentumRatio: 0.3
+                    }}
+                    mousewheel={{
+                        forceToAxis: false,
+                        sensitivity: 1,
+                        releaseOnEdges: true,
+                      }}
+                      modules={[Mousewheel, FreeMode]}
+                    >
                     {error ? <ErrorSign /> : postsData?.map((post: TPost) => {
                         return <SwiperSlide key={post.id}>
                             <PostItem key={post.id} title={post.title} body={post.body} userId={post.userId} id={post.id} />

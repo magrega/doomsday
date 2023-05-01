@@ -12,7 +12,7 @@ interface IPostItemProps {
     userId: number;
 }
 
-const PostItem: FC<IPostItemProps> = ({ title, body, userId, id }) => {
+const PostItem: FC<IPostItemProps> = ({ title, body, userId }) => {
 
     const [user, setUser] = useState('');
     const [open, setOpen] = useState(false);
@@ -28,9 +28,11 @@ const PostItem: FC<IPostItemProps> = ({ title, body, userId, id }) => {
 
     return (
         <div className="postitem-card">
-            <h3>{title}</h3>
-            <p onClick={handleOpen} className='postitem-card__text'>{truncate(body, 300)}</p>
-            <div >
+            <div onClick={handleOpen} className='postitem-card__text-container'>
+                <h3>{title}</h3>
+                <p className='postitem-card__text'>{truncate(body, 300)}</p>
+            </div>
+            <div>
                 <a href='https://www.facebook.com/ElonMuskOfficiaI' target='_blank' rel='noreferrer' className='postitem-card__author socials-container'><span>{user ?? "anonymus"}</span></a>
             </div>
             <ShareStory />
