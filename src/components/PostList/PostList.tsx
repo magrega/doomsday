@@ -81,7 +81,7 @@ const PostList: FC = () => {
                     freeMode={{
                         enabled: true,
                         sticky: false,
-                        momentumRatio: 0.3
+                        momentumRatio: 0.4
                     }}
                     mousewheel={{
                         forceToAxis: false,
