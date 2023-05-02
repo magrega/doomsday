@@ -1,7 +1,7 @@
-import { FC, useEffect, useState, useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Mousewheel, FreeMode } from 'swiper';
+import { FC, useEffect, useState } from 'react';
+import { FreeMode, Mousewheel } from 'swiper';
 import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { TPost, getPosts } from '../../services/getPosts';
 import AddStoryModal from '../AddStoryModal/AddStoryModal';
 import ErrorSign from '../ErrorSign/ErrorSign';
@@ -10,41 +10,33 @@ import Spinner from '../Spinner/Spinner';
 import './PostList.css';
 
 export type TPostData = {
+    total: number,
     posts: [{
-        body: string;
         id: number;
+        body: string;
         title: string;
         userId: number;
     }]
 }
 
 const PostList: FC = () => {
-
+    const [limit, setLimit] = useState(10);
     const [postsData, setPostsData] = useState<TPost[] | undefined>();
     const [page, setPage] = useState(0);
     const [loadingMorePosts, setLoadingMorePosts] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const isShowMoreRunning = useRef(false);
-
-    // const showMore = useCallback(() => { 
-    //     setLoadingMorePosts(true);
-    //     setPage(prevPage => prevPage + 1);
-    //     console.log("SHOWMORE");
-    // }, [setLoadingMorePosts])
 
     const showMore = () => {
-        if (!isShowMoreRunning.current) {
-            isShowMoreRunning.current = true;
-            setLoadingMorePosts(true);
-            setPage(prevPage => prevPage + 1);
-        }
-    };
+        setLoadingMorePosts(true);
+        setPage(prevPage => prevPage + 1);
+    }
 
     useEffect(() => {
         getPosts(page)
             .then(newPosts => newPosts.json() as Promise<TPostData>)
             .then(newPosts => {
+                setLimit(newPosts.total);
                 setPostsData(prevState => [...(prevState ?? []), ...newPosts.posts]);
                 setLoadingMorePosts(false);
                 setLoading(false);
@@ -56,10 +48,6 @@ const PostList: FC = () => {
                 setLoadingMorePosts(false);
             })
     }, [page]);
-
-    useEffect(() => {
-        isShowMoreRunning.current = false;
-    }, [postsData]);
 
     if (loading) return <Spinner />;
 
@@ -74,22 +62,17 @@ const PostList: FC = () => {
             </div>
             <div className='post-list__postitem-view'>
                 <Swiper
+                    modules={[Mousewheel, FreeMode]}
+                    mousewheel
                     spaceBetween={10}
                     slidesPerView={"auto"}
-                    touchMoveStopPropagation={true}
-                    onReachEnd={showMore}
+                    onTouchStart={(swiper) => { if (swiper.progress === 1 && !(swiper.slides.length === limit)) showMore() }}
                     freeMode={{
                         enabled: true,
                         sticky: false,
                         momentumRatio: 0.4
                     }}
-                    mousewheel={{
-                        forceToAxis: false,
-                        sensitivity: 1,
-                        releaseOnEdges: true,
-                      }}
-                      modules={[Mousewheel, FreeMode]}
-                    >
+                >
                     {error ? <ErrorSign /> : postsData?.map((post: TPost) => {
                         return <SwiperSlide key={post.id}>
                             <PostItem key={post.id} title={post.title} body={post.body} userId={post.userId} id={post.id} />

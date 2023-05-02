@@ -70,6 +70,6 @@ ul>li {
     margin-right: 12px;
 }
 
-.post-item-spinner {
+.swiper-slide.post-item-spinner {
     width: auto;
 }

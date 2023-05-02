@@ -12,7 +12,7 @@ interface IPostItemProps {
     userId: number;
 }
 
-const PostItem: FC<IPostItemProps> = ({ title, body, userId }) => {
+const PostItem: FC<IPostItemProps> = ({ title, body, userId, id }) => {
 
     const [user, setUser] = useState('');
     const [open, setOpen] = useState(false);
@@ -28,6 +28,7 @@ const PostItem: FC<IPostItemProps> = ({ title, body, userId }) => {
 
     return (
         <div className="postitem-card">
+            <span>{id}</span>
             <div onClick={handleOpen} className='postitem-card__text-container'>
                 <h3>{title}</h3>
                 <p className='postitem-card__text'>{truncate(body, 300)}</p>
