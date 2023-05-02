@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #131723;
+}
+
 .App {
   color: #C9E1C5;
   background-color: #131723;
