@@ -28,7 +28,6 @@ const PostItem: FC<IPostItemProps> = ({ title, body, userId, id }) => {
 
     return (
         <div className="postitem-card">
-            <span>{id}</span>
             <div onClick={handleOpen} className='postitem-card__text-container'>
                 <h3>{title}</h3>
                 <p className='postitem-card__text'>{truncate(body, 300)}</p>
