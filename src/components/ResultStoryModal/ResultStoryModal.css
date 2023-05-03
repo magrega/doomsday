@@ -16,3 +16,10 @@
     }
 
 }
+
+@media (max-height: 667px) {
+    .modal-window h3 {
+        font-size: 26px;
+    }
+
+}
