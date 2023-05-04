@@ -1,4 +1,3 @@
-import React from 'react';
 import './ErrorSign.css';
 
 const ErrorSign = () => {
