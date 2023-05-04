@@ -17,7 +17,7 @@
 
 }
 
-@media (max-height: 667px) {
+@media (max-height: 768px) {
     .modal-window h3 {
         font-size: 26px;
     }

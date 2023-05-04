@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import { FreeMode, Mousewheel } from 'swiper';
-import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { TPost, getPosts } from '../../services/getPosts';
 import AddStoryModal from '../AddStoryModal/AddStoryModal';
@@ -8,6 +7,7 @@ import ErrorSign from '../ErrorSign/ErrorSign';
 import PostItem from '../PostItem/PostItem';
 import Spinner from '../Spinner/Spinner';
 import './PostList.css';
+import 'swiper/css';
 
 export type TPostData = {
     total: number,
@@ -33,9 +33,12 @@ const PostList: FC = () => {
     }
 
     useEffect(() => {
+        let ignore = false; 
+
         getPosts(page)
             .then(newPosts => newPosts.json() as Promise<TPostData>)
             .then(newPosts => {
+                if (ignore) return;
                 setLimit(newPosts.total);
                 setPostsData(prevState => [...(prevState ?? []), ...newPosts.posts]);
                 setLoadingMorePosts(false);
@@ -47,6 +50,10 @@ const PostList: FC = () => {
                 setLoading(false);
                 setLoadingMorePosts(false);
             })
+
+            return () => {
+                ignore = true;
+              };
     }, [page]);
 
     if (loading) return <Spinner />;

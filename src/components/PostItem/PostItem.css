@@ -12,6 +12,11 @@
     background-color: #1E212C;
     border: 1px solid #C9E1C5;
     border-radius: 30px;
+    cursor: pointer;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .postitem-card__text-container {

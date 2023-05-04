@@ -7,7 +7,7 @@ type TGeneratedResultParagraphProp = {
 
 const GeneratedResultParagraph: FC<TGeneratedResultParagraphProp> = ({ body }) => {
     return (
-        <p className='generate-result'>{body}</p>
+        <div className='generate-result'>{body}</div>
     );
 };
 

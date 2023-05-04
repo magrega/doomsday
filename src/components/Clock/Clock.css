@@ -10,9 +10,9 @@
     font-family: 'Haskoy', serif;
 }
 
-.clock-container p {
+/* .clock-container p {
     margin: 0;
-}
+} */
 
 @media (max-width: 1023px) {
     .clock-container {
