@@ -58,7 +58,9 @@ const PostList: FC = () => {
     }
 
     const onTouchEnd = (swiper: SwiperType) => {
-        if (swiper.progress < -0.03) checkNewPosts();
+        if (swiper.progress < -0.02) checkNewPosts();
+        console.log(swiper.progress);
+        
     }
 
     useEffect(() => {
@@ -89,7 +91,9 @@ const PostList: FC = () => {
                     onTouchEnd={onTouchEnd}
                     freeMode={{
                         enabled: true,
-                        sticky: false
+                        sticky: false,
+                        momentumRatio: 0.4,
+                        momentumBounce: true
                     }}
                 >
                     {loadingNewPosts && <SwiperSlide className='post-item-spinner' key='spinner'><Spinner /></SwiperSlide>}
