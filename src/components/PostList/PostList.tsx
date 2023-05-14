@@ -76,7 +76,7 @@ const PostList: FC = () => {
                         <span className='sticker'>soon</span>
                     </span>
                 </div>
-                <AddStoryModal />
+                <AddStoryModal checkNewPosts={checkNewPosts}/>
             </div>
             {loading ? <Spinner /> :
                 <div className='post-list__postitem-view'>

@@ -3,10 +3,17 @@ import ModalBase from '../ModalBase/ModalBase';
 import ResultStoryModal from '../ResultStoryModal/ResultStoryModal';
 import './AddStoryModal.css';
 
-const AddStoryModal: FC = () => {
+interface IAddStoryModal {
+  checkNewPosts: () => void;
+}
+
+const AddStoryModal: FC<IAddStoryModal> = ({ checkNewPosts }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    checkNewPosts();
+    setOpen(false);
+  }
   const inputRef = useRef<HTMLInputElement>(null);
 
   const getUserInputValue = () => {
