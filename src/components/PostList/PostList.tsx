@@ -60,14 +60,11 @@ const PostList: FC = () => {
     const onTouchEnd = (swiper: SwiperType) => {
         if (swiper.progress < -0.02) checkNewPosts();
         console.log(swiper.progress);
-        
     }
 
     useEffect(() => {
-        addOlderPosts()
+        checkNewPosts();
     }, []);
-
-    if (loading) return <Spinner />;
 
     return (
         <div className='post-list'>
@@ -81,31 +78,32 @@ const PostList: FC = () => {
                 </div>
                 <AddStoryModal />
             </div>
-            <div className='post-list__postitem-view'>
-                <Swiper
-                    modules={[Mousewheel, FreeMode]}
-                    mousewheel
-                    spaceBetween={10}
-                    slidesPerView='auto'
-                    onTouchStart={onTouchStart}
-                    onTouchEnd={onTouchEnd}
-                    freeMode={{
-                        enabled: true,
-                        sticky: false,
-                        momentumRatio: 0.4,
-                        momentumBounce: true
-                    }}
-                >
-                    {loadingNewPosts && <SwiperSlide className='post-item-spinner' key='spinner'><Spinner /></SwiperSlide>}
-                    {postsData && postsData?.map((post: TStory) => {
-                        return <SwiperSlide key={post.id}>
-                            <PostItem post={post} />
-                        </SwiperSlide>
-                    })}
-                    {error && <ErrorSign />}
-                    {loadingOldPosts && <SwiperSlide className='post-item-spinner' key='spinner'><Spinner /></SwiperSlide>}
-                </Swiper>
-            </div>
+            {loading ? <Spinner /> :
+                <div className='post-list__postitem-view'>
+                    <Swiper
+                        modules={[Mousewheel, FreeMode]}
+                        mousewheel
+                        spaceBetween={10}
+                        slidesPerView='auto'
+                        onTouchStart={onTouchStart}
+                        onTouchEnd={onTouchEnd}
+                        freeMode={{
+                            enabled: true,
+                            sticky: false,
+                            momentumRatio: 0.4,
+                            momentumBounce: true
+                        }}
+                    >
+                        {loadingNewPosts && <SwiperSlide className='post-item-spinner' key='spinner'><Spinner /></SwiperSlide>}
+                        {postsData && postsData?.map((post: TStory) => {
+                            return <SwiperSlide key={post.id}>
+                                <PostItem post={post} />
+                            </SwiperSlide>
+                        })}
+                        {error && <ErrorSign />}
+                        {loadingOldPosts && <SwiperSlide className='post-item-spinner' key='spinner'><Spinner /></SwiperSlide>}
+                    </Swiper>
+                </div>}
         </div>
     );
 };

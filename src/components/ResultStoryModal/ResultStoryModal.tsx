@@ -7,7 +7,7 @@ import './ResultStoryModal.css';
 
 interface IResultStoryModal {
   closeModal: () => void;
-  userInputValue: string;
+  userInputValue: () => string;
 }
 
 const ResultStoryModal: FC<IResultStoryModal> = ({ closeModal, userInputValue }) => {
@@ -17,16 +17,16 @@ const ResultStoryModal: FC<IResultStoryModal> = ({ closeModal, userInputValue })
 
   const postStory = (e: SyntheticEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsLoading(true);    
     fetch('https://lobster-app-qoium.ondigitalocean.app/story/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ content: userInputValue })
+      body: JSON.stringify({ content: userInputValue() })
     }).then(res => {
-      setStory(userInputValue)
+      setStory(userInputValue())
       console.log(res.json())
       setIsLoading(false);
     })
