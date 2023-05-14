@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, SyntheticEvent, useState } from 'react';
 import starIcon from '../../assets/icons/starIcon.svg';
 import GeneratedResultDiv from '../GeneratedResultParagraph/GeneratedResultDiv';
 import ModalBase from '../ModalBase/ModalBase';
@@ -7,26 +7,26 @@ import './ResultStoryModal.css';
 
 interface IResultStoryModal {
   closeModal: () => void;
-  refValue: () => string;
+  userInputValue: string;
 }
 
-const ResultStoryModal: FC<IResultStoryModal> = ({ closeModal, refValue }) => {
+const ResultStoryModal: FC<IResultStoryModal> = ({ closeModal, userInputValue }) => {
   const [open, setOpen] = useState(false);
   const [story, setStory] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
 
-  const postStory = () => {
+  const postStory = (e: SyntheticEvent) => {
+    e.preventDefault();
     setIsLoading(true);
-    console.log(refValue());
     fetch('https://lobster-app-qoium.ondigitalocean.app/story/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ content: refValue() })
+      body: JSON.stringify({ content: userInputValue })
     }).then(res => {
-      setStory(refValue())
+      setStory(userInputValue)
       console.log(res.json())
       setIsLoading(false);
     })

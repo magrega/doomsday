@@ -9,7 +9,7 @@ const AddStoryModal: FC = () => {
   const handleClose = () => setOpen(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const getRefValue = () => {
+  const getUserInputValue = () => {
     if (inputRef.current === null) {
       return '';
     } else {
@@ -21,8 +21,9 @@ const AddStoryModal: FC = () => {
     <>
       <span onClick={handleOpen}>{window.innerWidth < 500 ? "+ add" : "+ generate your story"}</span>
       <ModalBase open={open} handleClose={handleClose} title='craft your story'>
-        <input ref={inputRef} type="text" placeholder='enter a prompt to inspire your unique tale' />
-        <ResultStoryModal refValue={getRefValue} closeModal={handleClose}/>
+        <form><input ref={inputRef} required type="text" placeholder='enter a prompt to inspire your unique tale' />
+          <ResultStoryModal userInputValue={getUserInputValue()} closeModal={handleClose} />
+        </form>
         <span>Unleash the power of your imagination and shape the future with your stories. Use our AI-powered generator to create positive, negative, or balanced narratives. Remember, your voice can influence the world and make a difference. Let's start crafting your tale today!</span>
       </ModalBase>
     </>
