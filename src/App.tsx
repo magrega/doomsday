@@ -1,22 +1,22 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
 import AboutPage from './components/AboutPage/AboutPage';
 import './App.css';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <MainPage />,
   },
   {
-    path: "/about",
+    path: '/about',
     element: <AboutPage />,
   },
 ]);
 
 const App = () => {
   return (
-    <div className="App">
+    <div className='App'>
       <RouterProvider router={router} />
     </div>
   );

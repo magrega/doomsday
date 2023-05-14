@@ -9,10 +9,10 @@ interface NavBarProps {
 
 const NavBar: FC<NavBarProps> = ({ text, to }) => {
     return (
-        <div className="navbar">
+        <div className='navbar'>
             <span>doomsday clock ai</span>
-            <div className="link-container">
-                <Link className='navbar__a' to={to}>{text}</Link>
+            <div className='link-container'>
+                <Link className='navbar__btn' to={to}>{text}</Link>
             </div>
         </div>
     );

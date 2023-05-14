@@ -1,27 +1,32 @@
-const _api = "https://dummyjson.com";
+import { TStory, TStoryData } from '../App.types';
 
-export const getPosts = async (page: number = 0): Promise<Response> => {    
-      try {
-        const responsePosts = await fetch(`${_api}/posts?limit=10&skip=${page * 10}`);
+const _api = 'https://lobster-app-qoium.ondigitalocean.app';
+let initialRequest = `/story/?offset=0&limit=5`;
+
+export const getPosts = async (req: string = initialRequest): Promise<TStoryData> => {
+    
+    try {
+        const responsePosts = await fetch(`${_api}${req}`);
 
         if (!responsePosts.ok) {
             throw new Error(`HTTP error! status: ${responsePosts.status}`);
         }
 
-        return responsePosts;
+        const responseBody = responsePosts.json();        
+        await responseBody.then(body => {
+            // if (body.next_url === null) return;
+            initialRequest = body.next_url;
+            console.log(initialRequest);
+            
+        });
+
+        return responseBody;
     } catch (e) {
         throw new Error(`Error fetching posts: ${(e as Error).message}`);
     }
 }
 
-export type TPost = {
-    id: number;
-    body: string;
-    title: string;
-    userId: number;
-}
-
-export const getRandomPost = async (): Promise<TPost> => {
+export const getRandomPost = async (): Promise<TStory> => {
     const randomNum = Math.floor((Math.random() * 150) + 1);
     try {
         const responsePost = await fetch(`${_api}/posts/${randomNum}`);
@@ -36,7 +41,7 @@ export const getRandomPost = async (): Promise<TPost> => {
     }
 }
 
-export const getUser = async (userId: number): Promise<{username: string}> => {
+export const getUser = async (userId: number): Promise<{ username: string }> => {
     try {
         const responsePost = await fetch(`${_api}/users/${userId}`);
 

@@ -12,10 +12,13 @@ const Clock: FC = () => {
     const timeBetweenYMD = timeBetween.slice(0, timeBetween.search('/'));
     const timeBetweenHMS = timeBetween.slice(timeBetween.search('/') + 1);
 
-    useEffect(() => { setInterval(() => setClock(moment()), 1000) }, []);
+    useEffect(() => { 
+        const doomsdayClock = setInterval(() => setClock(moment()), 1000);
+        return () => clearTimeout(doomsdayClock);
+     }, []);
 
     return (
-        <div className="clock-container">
+        <div className='clock-container'>
             <p className='time'>{timeBetweenYMD}</p>
             <p className='time'>{timeBetweenHMS}</p>
         </div>

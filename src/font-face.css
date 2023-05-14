@@ -1,17 +1,17 @@
 @font-face {
-    font-family: "Haskoy";
-    src: url("./assets/fonts/Haskoy-Medium.ttf");
+    font-family: 'Haskoy';
+    src: url('./assets/fonts/Haskoy-Medium.ttf');
     font-weight: 500;
 }
 
 @font-face {
-    font-family: "Haskoy";
-    src: url("./assets/fonts/Haskoy-SemiBold.ttf");
+    font-family: 'Haskoy';
+    src: url('./assets/fonts/Haskoy-SemiBold.ttf');
     font-weight: 600;
 }
 
 @font-face {
-    font-family: "Haskoy";
-    src: url("./assets/fonts/Haskoy-Regular.ttf");
+    font-family: 'Haskoy';
+    src: url('./assets/fonts/Haskoy-Regular.ttf');
     font-weight: 400;
 }

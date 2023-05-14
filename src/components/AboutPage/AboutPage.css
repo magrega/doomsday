@@ -39,7 +39,7 @@
 }
 
 .about-page__info-wrapper::after {
-    content: "\00a0";
+    content: '\00a0';
     position: absolute;
     /* display: block; */
     width: 20px;

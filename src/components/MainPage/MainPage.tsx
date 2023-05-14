@@ -6,14 +6,12 @@ import './MainPage.css';
 
 const MainPage: FC = () => {
     return (
-        <>
             <div className='main-page'>
-                <NavBar text={"About"} to='/about' />
+                <NavBar text='About' to='/about' />
                 <Clock />
                 <p className='undertext'>ticking towards the AGI super intelligence singularity</p>
                 <PostList />
             </div>
-        </>
     );
 };
 

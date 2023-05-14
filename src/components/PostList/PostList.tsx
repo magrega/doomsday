@@ -1,69 +1,76 @@
 import { FC, useEffect, useState } from 'react';
-import { FreeMode, Mousewheel } from 'swiper';
+import { FreeMode, Mousewheel, Swiper as SwiperType } from 'swiper';
+import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { TPost, getPosts } from '../../services/getPosts';
+import { TStory } from '../../App.types';
+import { getPosts } from '../../services/getPosts';
 import AddStoryModal from '../AddStoryModal/AddStoryModal';
 import ErrorSign from '../ErrorSign/ErrorSign';
 import PostItem from '../PostItem/PostItem';
 import Spinner from '../Spinner/Spinner';
 import './PostList.css';
-import 'swiper/css';
-
-export type TPostData = {
-    total: number,
-    posts: [{
-        id: number;
-        body: string;
-        title: string;
-        userId: number;
-    }]
-}
 
 const PostList: FC = () => {
-    const [limit, setLimit] = useState(10);
-    const [postsData, setPostsData] = useState<TPost[] | undefined>();
-    const [page, setPage] = useState(0);
+    const [limit, setLimit] = useState(false);
+    const [postsData, setPostsData] = useState<TStory[] | undefined>();
     const [loadingMorePosts, setLoadingMorePosts] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
+    const checkNewPosts = () => getPosts(`/story/?offset=0&limit=3`)
+    .then(newPosts => {
+        newPosts && setPostsData([...newPosts.stories]);
+        setLoadingMorePosts(false);
+        setLoading(false);
+        console.log("new posts");
+    })
+    .catch(e => {
+        setError(true);
+        console.log(e.message);
+        setLoading(false);
+        setLoadingMorePosts(false);
+    });
+
+    const addOlderPosts = () => getPosts()
+        .then(newPosts => {
+            newPosts && setPostsData(prevState => [...(prevState ?? []), ...newPosts.stories]);
+            newPosts?.next_url === null ? setLimit(true) : setLimit(false);
+            setLoadingMorePosts(false);
+            setLoading(false);
+            console.log("old posts");
+        })
+        .catch(e => {
+            setError(true);
+            console.log(e.message);
+            setLoading(false);
+            setLoadingMorePosts(false);
+        });
+
     const showMore = () => {
         setLoadingMorePosts(true);
-        setPage(prevPage => prevPage + 1);
+        addOlderPosts();
+    }
+
+    const onTouchStart = (swiper: SwiperType) => {
+        if (swiper.progress === 1 && !limit) showMore();
+        if (swiper.progress === 0) checkNewPosts();
     }
 
     useEffect(() => {
-        let ignore = false; 
-
-        getPosts(page)
-            .then(newPosts => newPosts.json() as Promise<TPostData>)
-            .then(newPosts => {
-                if (ignore) return;
-                setLimit(newPosts.total);
-                setPostsData(prevState => [...(prevState ?? []), ...newPosts.posts]);
-                setLoadingMorePosts(false);
-                setLoading(false);
-            })
-            .catch(e => {
-                setError(true);
-                console.log(e.message);
-                setLoading(false);
-                setLoadingMorePosts(false);
-            })
-
-            return () => {
-                ignore = true;
-              };
-    }, [page]);
+        addOlderPosts()
+    }, []);
 
     if (loading) return <Spinner />;
 
     return (
-        <div className="post-list">
-            <div className="post-list__menu">
-                <div className="post-list__menu-left">
-                    <span>user stories</span>
-                    <span className='disabled'>last change<span className='sticker'>soon</span></span>
+        <div className='post-list'>
+            <div className='post-list__menu'>
+                <div className='post-list__menu-left'>
+                    <span onClick={showMore}>user stories</span>
+                    <span className='disabled'>
+                        last change
+                        <span className='sticker'>soon</span>
+                    </span>
                 </div>
                 <AddStoryModal />
             </div>
@@ -72,20 +79,21 @@ const PostList: FC = () => {
                     modules={[Mousewheel, FreeMode]}
                     mousewheel
                     spaceBetween={10}
-                    slidesPerView={"auto"}
-                    onTouchStart={(swiper) => { if (swiper.progress === 1 && !(swiper.slides.length === limit)) showMore() }}
+                    slidesPerView='auto'
+                    onTouchStart={onTouchStart}
                     freeMode={{
                         enabled: true,
                         sticky: false,
                         momentumRatio: 0.4
                     }}
                 >
-                    {error ? <ErrorSign /> : postsData?.map((post: TPost) => {
+                    {postsData && postsData?.map((post: TStory) => {
                         return <SwiperSlide key={post.id}>
-                            <PostItem key={post.id} title={post.title} body={post.body} userId={post.userId} id={post.id} />
+                            <PostItem post={post} />
                         </SwiperSlide>
                     })}
-                    {loadingMorePosts && <SwiperSlide className='post-item-spinner' key={"spinner"}><Spinner /></SwiperSlide>}
+                    {error && <ErrorSign />}
+                    {loadingMorePosts && <SwiperSlide className='post-item-spinner' key='spinner'><Spinner /></SwiperSlide>}
                 </Swiper>
             </div>
         </div>

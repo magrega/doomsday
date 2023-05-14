@@ -14,6 +14,11 @@
     font-weight: 400;
 }
 
+.add-story {
+   font: inherit;
+   color: inherit;
+}
+
 @media (max-height: 768px) {
     .modal-window span {
         font-size: 16px;
@@ -34,5 +39,4 @@
         font-size: 16px;
         color: #818980;
     }
-    
 }

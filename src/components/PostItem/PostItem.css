@@ -47,7 +47,7 @@
 }
 
 .socials-container::before {
-    content: "";
+    content: '';
     display: inline-block;
     width: 26px;
     height: 26px;
