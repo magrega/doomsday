@@ -3,7 +3,7 @@ import { FreeMode, Mousewheel, Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { TStory } from '../../App.types';
-import { getPosts } from '../../services/getPosts';
+import { getPosts } from '../../services/fetchPosts';
 import AddStoryModal from '../AddStoryModal/AddStoryModal';
 import ErrorSign from '../ErrorSign/ErrorSign';
 import PostItem from '../PostItem/PostItem';

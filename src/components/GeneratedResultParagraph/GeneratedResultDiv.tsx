@@ -1,18 +1,13 @@
 import { FC } from 'react';
 import './GeneratedResultDiv.css';
-import Spinner from '../Spinner/Spinner';
 
 type TGeneratedResultDivProp = {
-    body: string | undefined;
-    isLoading?: boolean;
+    body: string;
 }
 
-const GeneratedResultDiv: FC<TGeneratedResultDivProp> = ({ body, isLoading }) => {
+const GeneratedResultDiv: FC<TGeneratedResultDivProp> = ({ body }) => {
     return (
-        <>
-        {isLoading && <Spinner/>}
-        {body && <div className='generate-result'>{body}</div>}
-        </>
+        <div className='generate-result'>{body}</div>
     );
 };
 

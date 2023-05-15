@@ -1,5 +1,7 @@
 import { FC, SyntheticEvent, useState } from 'react';
+import { BeatLoader } from 'react-spinners';
 import starIcon from '../../assets/icons/starIcon.svg';
+import { sendPost } from '../../services/fetchPosts';
 import GeneratedResultDiv from '../GeneratedResultParagraph/GeneratedResultDiv';
 import ModalBase from '../ModalBase/ModalBase';
 import ShareStory from '../ShareStory/ShareStory';
@@ -7,38 +9,40 @@ import './ResultStoryModal.css';
 
 interface IResultStoryModal {
   closeModal: () => void;
-  userInputValue: () => string;
 }
 
-const ResultStoryModal: FC<IResultStoryModal> = ({ closeModal, userInputValue }) => {
+const ResultStoryModal: FC<IResultStoryModal> = ({ closeModal }) => {
   const [open, setOpen] = useState(false);
-  const [story, setStory] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
+  const [userInputValue, setUserInputValue] = useState('');
 
   const postStory = (e: SyntheticEvent) => {
     e.preventDefault();
-    setIsLoading(true);    
-    fetch('https://lobster-app-qoium.ondigitalocean.app/story/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ content: userInputValue() })
-    }).then(res => {
-      setStory(userInputValue())
-      console.log(res.json())
+    setIsLoading(true);
+    sendPost(userInputValue).then(() => {
+      setUserInputValue(userInputValue);
+      setOpen(true);
       setIsLoading(false);
     })
-
-    setOpen(true);
   }
+
+  const buttonText = isLoading ? <BeatLoader color='#1E212C'/> : <>craft your story<img src={starIcon} alt="beautiful stars" /></>
 
   return (
     <>
-      <button onClick={postStory} className='navbar__btn result-story-btn'>craft your story<img src={starIcon} alt="beautiful stars" /></button>
+      <form onSubmit={postStory}>
+        <input
+          required
+          minLength={5}
+          maxLength={300}
+          type="text"
+          placeholder='enter a prompt to inspire your unique tale'
+          value={userInputValue}
+          onChange={e => setUserInputValue(e.target.value)} />
+        <button type='submit' className='navbar__btn result-story-btn'>{buttonText}</button>
+      </form>
       <ModalBase open={open} handleClose={closeModal}>
-        <GeneratedResultDiv body={story} isLoading={isLoading} />
+        <GeneratedResultDiv body={userInputValue} />
         <ShareStory />
       </ModalBase>
     </>
