@@ -17,15 +17,16 @@ const PostList: FC = () => {
     const [loadingNewPosts, setLoadingNewPosts] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [swiperInstance, setSwiperInstance] = useState<SwiperType>();
 
-    const checkNewPosts = () => {
+
+    const checkNewPosts = () => {        
         setLoadingNewPosts(true);
         getPosts(`/story/?offset=0&limit=15`)
             .then(newPosts => {
                 newPosts && setPostsData([...newPosts.stories]);
                 setLoadingNewPosts(false);
-                setLoading(false);
-                console.log("new posts");
+                setLoading(false);                
             })
             .catch(e => {
                 setError(true);
@@ -33,6 +34,11 @@ const PostList: FC = () => {
                 setLoadingNewPosts(false);
                 setLoading(false);
             });
+    }
+
+    const scrollBackAndRefresh = () => {
+        swiperInstance?.setProgress(0, 1000);
+        checkNewPosts();
     }
 
     const addOlderPosts = () => getPosts()
@@ -59,8 +65,14 @@ const PostList: FC = () => {
 
     const onTouchEnd = (swiper: SwiperType) => {
         if (swiper.progress < -0.02) checkNewPosts();
-        console.log(swiper.progress);
     }
+
+    const enableScroll = () => window.onscroll = () => { };
+    const disableScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        window.onscroll = () => window.scroll({ top: scrollTop });
+    }
+
 
     useEffect(() => {
         checkNewPosts();
@@ -70,23 +82,28 @@ const PostList: FC = () => {
         <div className='post-list'>
             <div className='post-list__menu'>
                 <div className='post-list__menu-left'>
-                    <span onClick={checkNewPosts}>user stories</span>
+                    <span onClick={scrollBackAndRefresh}>user stories</span>
                     <span className='disabled'>
                         last change
                         <span className='sticker'>soon</span>
                     </span>
                 </div>
-                <AddStoryModal checkNewPosts={checkNewPosts}/>
+                <AddStoryModal checkNewPosts={checkNewPosts} />
             </div>
             {loading ? <Spinner /> :
-                <div className='post-list__postitem-view'>
+                <div className='post-list__postitem-view'
+                    onMouseEnter={disableScroll}
+                    onMouseLeave={enableScroll}
+                >
                     <Swiper
+                        onSwiper={setSwiperInstance}
+                        onTouchStart={onTouchStart}
+                        onTouchEnd={onTouchEnd}
                         modules={[Mousewheel, FreeMode]}
                         mousewheel
                         spaceBetween={10}
                         slidesPerView='auto'
-                        onTouchStart={onTouchStart}
-                        onTouchEnd={onTouchEnd}
+                        passiveListeners={false}
                         freeMode={{
                             enabled: true,
                             sticky: false,
