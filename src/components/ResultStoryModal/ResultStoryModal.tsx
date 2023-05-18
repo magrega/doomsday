@@ -23,7 +23,11 @@ const ResultStoryModal: FC<IResultStoryModal> = ({ closeModal }) => {
       setUserInputValue(userInputValue);
       setOpen(true);
       setIsLoading(false);
-    })
+    }).catch(e => {
+      console.log(e.message);
+      setUserInputValue(e.message);
+      setIsLoading(false);
+  });
   }
 
   const buttonText = isLoading ? <BeatLoader color='#1E212C'/> : <>craft your story<img src={starIcon} alt="beautiful stars" /></>

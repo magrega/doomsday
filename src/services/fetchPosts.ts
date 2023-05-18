@@ -1,7 +1,7 @@
 import { TStoryData } from '../App.types';
 
 const _api = 'https://lobster-app-qoium.ondigitalocean.app';
-let initialRequest = `/story/?offset=0&limit=15`;
+let initialRequest = `?offset=0&limit=15`;
 
 export const getPosts = async (req: string = initialRequest): Promise<TStoryData> => {
     

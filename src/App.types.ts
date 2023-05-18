@@ -17,4 +17,4 @@ export type TStoryData = {
         time_updated: number;
     }] | [],
     next_url: string | null;
-} | undefined;
+};

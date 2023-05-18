@@ -12,27 +12,26 @@ import './PostList.css';
 
 const PostList: FC = () => {
     const [limit, setLimit] = useState(false);
-    const [postsData, setPostsData] = useState<TStory[] | undefined>();
+    const [postsData, setPostsData] = useState<TStory[]>();
+    const [loading, setLoading] = useState(true);
     const [loadingOldPosts, setLoadingOldPosts] = useState(false);
     const [loadingNewPosts, setLoadingNewPosts] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
     const [swiperInstance, setSwiperInstance] = useState<SwiperType>();
+    const [error, setError] = useState(false);
 
-
-    const checkNewPosts = () => {        
+    const checkNewPosts = () => {
         setLoadingNewPosts(true);
         getPosts(`/story/?offset=0&limit=15`)
             .then(newPosts => {
                 newPosts && setPostsData([...newPosts.stories]);
                 setLoadingNewPosts(false);
-                setLoading(false);                
+                setLoading(false);
             })
             .catch(e => {
-                setError(true);
                 console.log(e.message);
-                setLoadingNewPosts(false);
+                setError(true);
                 setLoading(false);
+                setLoadingNewPosts(false);
             });
     }
 
@@ -47,11 +46,10 @@ const PostList: FC = () => {
             newPosts?.next_url === null ? setLimit(true) : setLimit(false);
             setLoadingOldPosts(false);
             setLoading(false);
-            console.log("old posts");
         })
         .catch(e => {
-            setError(true);
             console.log(e.message);
+            setError(true);
             setLoading(false);
             setLoadingOldPosts(false);
         });
@@ -72,7 +70,6 @@ const PostList: FC = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         window.onscroll = () => window.scroll({ top: scrollTop });
     }
-
 
     useEffect(() => {
         checkNewPosts();
