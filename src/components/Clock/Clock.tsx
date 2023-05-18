@@ -3,8 +3,8 @@ import 'moment-duration-format';
 import { FC, useEffect, useState } from 'react';
 import './Clock.css';
 
-const Clock: FC = () => {
 
+const Clock: FC = () => {
     const [clock, setClock] = useState(moment());
 
     const theEnd = moment('2050-01-01 00:00:00');
@@ -22,10 +22,6 @@ const Clock: FC = () => {
             <div className='clock-container'>
                 <p className='time'>{timeBetweenYMD}</p>
                 <p className='time'>{timeBetweenHMS}</p>
-            </div>
-            <div>
-                <img src="../../assets/img/pic1.png" alt="pic1" />
-                <img src="../../assets/img/pic2.png" alt="pic2" />
             </div>
         </>
     );

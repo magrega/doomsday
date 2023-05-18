@@ -1,6 +1,19 @@
 .main-page {
+    overflow-x: hidden;
     min-height: 100vh;
     padding: 0 20px;
+}
+
+.futuristic-pics {
+    display: flex;
+    margin-right: -20px;
+    margin-left: 10px;
+}
+
+.futuristic-pics img {
+    width: 100%;
+    height: auto;
+    padding-right: 10px;
 }
 
 @media (max-width: 768px) {
@@ -8,4 +21,16 @@
         padding-left: 15px;
         padding-right: 10px;
     }
+
+    .futuristic-pics {
+        margin-top: 30px;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .futuristic-pics img {
+        width: 100%;
+        height: auto;
+    }
+    
 }
