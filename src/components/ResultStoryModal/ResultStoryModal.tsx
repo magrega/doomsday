@@ -47,7 +47,7 @@ const ResultStoryModal: FC<IResultStoryModal> = ({ closeModal }) => {
       </form>
       <ModalBase open={open} handleClose={closeModal}>
         <GeneratedResultDiv body={userInputValue} />
-        <ShareStory />
+        <ShareStory text={userInputValue}/>
       </ModalBase>
     </>
   );

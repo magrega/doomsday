@@ -11,7 +11,7 @@ interface IPostItemProps {
     post: TStory;
 }
 
-const PostItem: FC<IPostItemProps> = ({post}) => {
+const PostItem: FC<IPostItemProps> = ({ post }) => {
 
     const [user, setUser] = useState('');
     const [open, setOpen] = useState(false);
@@ -33,10 +33,10 @@ const PostItem: FC<IPostItemProps> = ({post}) => {
             <div>
                 <a href='https://www.facebook.com/ElonMuskOfficiaI' target='_blank' rel='noreferrer' className='postitem-card__author socials-container'><span>{user ?? 'anonymus'}</span></a>
             </div>
-            <ShareStory />
+            <ShareStory text={post.content}/>
             <ModalBase open={open} handleClose={handleClose}>
                 <GeneratedResultDiv body={post.content} />
-                <ShareStory />
+                <ShareStory text={post.content}/>
             </ModalBase>
         </div>
     );

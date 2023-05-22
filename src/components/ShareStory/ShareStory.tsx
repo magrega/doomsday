@@ -2,7 +2,11 @@ import { FC } from 'react';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import './ShareStory.css';
 
-const ShareStory: FC = () => {
+interface IShareStory {
+    text: string;
+}
+
+const ShareStory: FC<IShareStory> = ({text}) => {
     const copylink = () => navigator.clipboard.writeText('facebook.com');
 
     return (
@@ -22,7 +26,7 @@ const ShareStory: FC = () => {
                 <li>
                     <TwitterShareButton
                         className='postitem-card__share-tw socials-container'
-                        title='test \n'
+                        title={text}
                         url='https://www.example.com'
                         hashtags={['#muo', '#test']}
                     >
