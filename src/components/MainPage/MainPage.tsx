@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import Clock from '../Clock/Clock';
 import NavBar from '../NavBar/NavBar';
 import PostList from '../PostList/PostList';
@@ -6,7 +6,7 @@ import './MainPage.css';
 import pic1 from '../../assets/img/pic1.png';
 import pic2 from '../../assets/img/pic2.png';
 
-const MainPage: FC = () => {
+const MainPage: FC<PropsWithChildren> = ({ children }) => {
     return (
         <div className='main-page'>
             <NavBar text='About' to='/about' />
@@ -21,6 +21,7 @@ const MainPage: FC = () => {
                 </div>
             </div>
             <PostList />
+            {children}
         </div>
     );
 };
