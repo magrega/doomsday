@@ -17,7 +17,13 @@
     border-radius: 4px;
 }
 
-@media (max-width: 768px) {
+.undertext {
+    margin-top: 6px;
+    margin-bottom: 142px;
+    font-family: 'Haskoy', serif;
+}
+
+@media (max-width: 850px) {
     .main-page {
         padding-left: 15px;
         padding-right: 10px;
@@ -34,5 +40,14 @@
         width: 100%;
         height: auto;
     }
-    
+
+    .undertext {
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 429px) {
+    .undertext {
+        font-size: 1rem;
+    }
 }

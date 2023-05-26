@@ -1,9 +1,9 @@
-import { TStoryData, TStory } from '../App.types';
+import { TStories, TStory } from '../App.types';
 
 const _api = 'https://lobster-app-qoium.ondigitalocean.app';
 let initialRequest = `/story/?offset=0&limit=15`;
 
-export const getPosts = async (req: string = initialRequest): Promise<TStoryData> => {
+export const getPosts = async (req: string = initialRequest): Promise<TStories> => {
 
     try {
         const responsePosts = await fetch(`${_api}${req}`);

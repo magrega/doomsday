@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { FreeMode, Mousewheel, Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { TStory } from '../../App.types';
-import ErrorSnackbar from '../../Snackbar/Snackbar';
+import ErrorSnackbar from '../Snackbar/Snackbar';
 import { getPosts } from '../../services/fetchPosts';
 import AddStoryModal from '../AddStoryModal/AddStoryModal';
 import PostItem from '../PostItem/PostItem';
@@ -11,23 +11,23 @@ import './PostList.css';
 import 'swiper/css';
 
 const PostList: FC = () => {
-    const [limit, setLimit] = useState(false);
-    const [postsData, setPostsData] = useState<TStory[]>();
-    const [loading, setLoading] = useState({ postFeed: true, newPosts: false, oldPosts: false });
     const [swiperInstance, setSwiperInstance] = useState<SwiperType>();
-    const [error, setError] = useState(false);
+    const [postsData, setPostsData] = useState<TStory[]>();
+    const [limit, setLimit] = useState(false);
+    const [error, setError] = useState({ state: false, errorText: '' });
+    const [loading, setLoading] = useState({ postFeed: true, newPosts: false, oldPosts: false });
 
     const checkNewPosts = () => {
-        !loading.postFeed && setLoading({ postFeed: false, newPosts: true, oldPosts: false });
+        if (!error.state && !loading.postFeed) setLoading({ postFeed: false, newPosts: true, oldPosts: false });
         getPosts(`/story/?offset=0&limit=15`)
             .then(newPosts => {
                 newPosts && setPostsData([...newPosts.stories]);
                 setLoading({ postFeed: false, newPosts: false, oldPosts: false });
-                setError(false);
+                setError({ state: false, errorText: '' });
             })
             .catch(e => {
                 console.log(e.message);
-                setError(true);
+                setError({ state: true, errorText: e.message });
                 setLoading({ postFeed: false, newPosts: false, oldPosts: false });
             });
     }
@@ -45,7 +45,7 @@ const PostList: FC = () => {
         })
         .catch(e => {
             console.log(e.message);
-            setError(true);
+            setError({ state: true, errorText: e.message });
             setLoading({ postFeed: false, newPosts: false, oldPosts: false });
         });
 
@@ -60,7 +60,7 @@ const PostList: FC = () => {
         if (swiper.progress < -0.02) checkNewPosts();
     }
 
-    const enableScroll = () => window.onscroll = () => { };
+    const enableScroll = () => window.onscroll = null;
     const disableScroll = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         window.onscroll = () => window.scroll({ top: scrollTop });
@@ -112,7 +112,7 @@ const PostList: FC = () => {
                         </Swiper>
                     </div>}
             </div>
-            {error && <ErrorSnackbar />}
+            {error.state && <ErrorSnackbar error={error} setError={setError} />}
         </>
     );
 };

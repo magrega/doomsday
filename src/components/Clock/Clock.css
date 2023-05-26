@@ -7,42 +7,62 @@
 .clock-container {
     margin-top: 128px;
     font-family: 'Prata', 'Haskoy', serif;
-    font-size: 60px;
+    font-size: 3.75rem;
 }
 
-.undertext {
-    margin-top: 6px;
-    margin-bottom: 142px;
-    font-family: 'Haskoy', serif;
+.time-space-fix {
+    display: inline-block;
+    text-align: center;
+    width: 4.5rem;
+}
+
+@media (max-width: 1535px) {
+    .clock-container {
+        font-size: 2.8rem;
+    }
+
+    .time-space-fix {
+        width: 3.5rem;
+    }
+}
+
+@media (max-width: 1281px) {
+    .clock-container {
+        font-size: 1.9rem;
+    }
+
+    .time-space-fix {
+        width: 2.5rem;
+    }
 }
 
 @media (max-width: 1023px) {
     .clock-container {
-        font-size: 45px;
+        font-size: 1.5rem;
+    }
+
+    .time-space-fix {
+        width: 1.9rem;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .clock-wrapper {
         flex-direction: column-reverse;
+        align-items: flex-start;
     }
 
     .clock-container {
-        margin-top: 0;;
-    }
-
-    .undertext {
-        margin-bottom: 50px;
-    }
-}
-@media (max-width: 430px) {
-    .clock-container {
-        font-size: 20px;
+        margin-top: 0;
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 429px) {
     .clock-container {
-        font-size: 21px;
+        font-size: 1.2rem;
+    }
+
+    .time-space-fix {
+        width: 1.5rem;
     }
 }

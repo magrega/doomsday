@@ -25,7 +25,6 @@ const ShareStory: FC<IShareStory> = ({ text, id }) => {
                         <p>fb</p>
                     </FacebookShareButton>
                 </li>
-
                 <li>
                     <TwitterShareButton
                         className='postitem-card__share-tw socials-container'

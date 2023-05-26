@@ -8,10 +8,9 @@ import './ResultStoryModal.css';
 
 interface IResultStoryModal {
   isResultOpen: boolean;
-  checkNewPosts?: () => void;
 }
 
-const ResultStoryModal: FC<IResultStoryModal> = ({ isResultOpen, checkNewPosts }) => {
+const ResultStoryModal: FC<IResultStoryModal> = ({ isResultOpen }) => {
   const [openResultModal, setOpenResultModal] = useState(false);
   const [isResultLoading, setIsResultLoading] = useState(true);
   const [post, setPost] = useState('');
@@ -20,7 +19,6 @@ const ResultStoryModal: FC<IResultStoryModal> = ({ isResultOpen, checkNewPosts }
   const navigate = useNavigate();
   const handleClose = () => {
     setOpenResultModal(false);
-    checkNewPosts && checkNewPosts();
     navigate('/');
   }
 
@@ -38,7 +36,6 @@ const ResultStoryModal: FC<IResultStoryModal> = ({ isResultOpen, checkNewPosts }
   return (
     <>
       <ModalBase open={openResultModal} handleClose={handleClose}>
-        <span>{id}</span>
         <div className='generate-result'>{isResultLoading ? <Spinner /> : post}</div>
         <ShareStory text={post} id={id} />
       </ModalBase>

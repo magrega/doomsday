@@ -1,6 +1,5 @@
 .post-list__menu {
     display: flex;
-    /* flex-direction: row; */
     justify-content: space-between;
     margin-bottom: 20px;
     font-family: 'Haskoy', serif;
@@ -9,11 +8,6 @@
 .post-list__menu span {
     cursor: pointer;
 }
-
-/* .post-list__menu-left {
-    display: flex;
-    align-items: center;
-} */
 
 .post-list__menu-left span {
     margin-right: 16px;

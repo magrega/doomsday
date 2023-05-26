@@ -7,7 +7,7 @@ export type TStory = {
     time_updated: number;
 }
 
-export type TStoryData = {
+export type TStories = {
     stories: [{
         id: number;
         content: string;
