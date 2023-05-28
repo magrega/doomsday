@@ -22,14 +22,16 @@ const ResultStoryModal: FC<IResultStoryModal> = ({ isResultOpen }) => {
     navigate('/');
   }
 
-  useEffect(() => { if (id) getPost(id).then(post => { 
-    setPost(post.content);
-    setIsResultLoading(false);
-  }).catch(e => {
-    console.log(e.message);
-    setPost(e.message);
-    setIsResultLoading(false);
-}); }, [id]);
+  useEffect(() => {
+    if (id) getPost(id).then(post => {
+      setPost(post.content);
+      setIsResultLoading(false);
+    }).catch(e => {
+      console.log(e.message);
+      setPost(e.message);
+      setIsResultLoading(false);
+    });
+  }, [id]);
 
   useEffect(() => { setOpenResultModal(isResultOpen) }, [isResultOpen]);
 

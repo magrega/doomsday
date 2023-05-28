@@ -8,13 +8,6 @@ export type TStory = {
 }
 
 export type TStories = {
-    stories: [{
-        id: number;
-        content: string;
-        not_show: boolean;
-        featured: boolean;
-        time_created: string;
-        time_updated: number;
-    }] | [],
+    stories: [TStory] | [],
     next_url: string | null;
 };

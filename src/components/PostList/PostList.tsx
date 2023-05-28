@@ -1,14 +1,14 @@
 import { FC, useEffect, useState } from 'react';
 import { FreeMode, Mousewheel, Swiper as SwiperType } from 'swiper';
+import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { TStory } from '../../App.types';
-import ErrorSnackbar from '../Snackbar/Snackbar';
 import { getPosts } from '../../services/fetchPosts';
 import AddStoryModal from '../AddStoryModal/AddStoryModal';
 import PostItem from '../PostItem/PostItem';
+import ErrorSnackbar from '../Snackbar/Snackbar';
 import Spinner from '../Spinner/Spinner';
 import './PostList.css';
-import 'swiper/css';
 
 const PostList: FC = () => {
     const [swiperInstance, setSwiperInstance] = useState<SwiperType>();
@@ -19,14 +19,13 @@ const PostList: FC = () => {
 
     const checkNewPosts = () => {
         if (!error.state && !loading.postFeed) setLoading({ postFeed: false, newPosts: true, oldPosts: false });
-        getPosts(`/story/?offset=0&limit=15`)
+        getPosts(`?offset=0&limit=15`)
             .then(newPosts => {
                 newPosts && setPostsData([...newPosts.stories]);
                 setLoading({ postFeed: false, newPosts: false, oldPosts: false });
                 setError({ state: false, errorText: '' });
             })
             .catch(e => {
-                console.log(e.message);
                 setError({ state: true, errorText: e.message });
                 setLoading({ postFeed: false, newPosts: false, oldPosts: false });
             });
@@ -39,12 +38,11 @@ const PostList: FC = () => {
 
     const addOlderPosts = () => getPosts()
         .then(newPosts => {
-            newPosts && setPostsData(prevState => [...(prevState ?? []), ...newPosts.stories]);
-            newPosts?.next_url === null ? setLimit(true) : setLimit(false);
+            setPostsData(prevState => [...(prevState ?? []), ...newPosts.stories]);
+            newPosts.next_url === null ? setLimit(true) : setLimit(false);
             setLoading({ postFeed: false, newPosts: false, oldPosts: false });
         })
         .catch(e => {
-            console.log(e.message);
             setError({ state: true, errorText: e.message });
             setLoading({ postFeed: false, newPosts: false, oldPosts: false });
         });

@@ -23,11 +23,11 @@
     transition: all .2s;
 }
 
-.navbar__a:hover {
+.navbar__btn:hover {
     filter: brightness(60%);
 }
 
-.navbar__a:active {
+.navbar__btn:active {
     filter: brightness(30%);
 }
 
