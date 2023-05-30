@@ -25,7 +25,7 @@
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 425px) {
     .modal-window__input{
         font-size: 16px;
         padding: 15px 10px;
@@ -34,5 +34,9 @@
     .modal-window__p {
         font-size: 16px;
         color: #818980;
+    }
+
+    button {
+        width: 100%;
     }
 }
