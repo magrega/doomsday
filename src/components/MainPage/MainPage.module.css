@@ -2,6 +2,7 @@
     overflow-x: hidden;
     min-height: 100vh;
     padding: 0 20px;
+    padding-bottom: 20px;
 }
 
 .clock-wrapper {
@@ -12,11 +13,11 @@
 
 .futuristic-pics {
     display: flex;
-    margin-right: -20px;
+    margin-right: -30px;
     margin-left: 10px;
 }
 
-.futuristic-pics img {
+.futuristic-pics .futuristic-pics__item {
     width: 100%;
     height: auto;
     padding-right: 10px;

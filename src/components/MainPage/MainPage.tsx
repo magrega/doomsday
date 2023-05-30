@@ -16,8 +16,8 @@ const MainPage: FC<PropsWithChildren> = ({ children }) => {
                     <p className={styles.undertext}>ticking towards the AGI super intelligence singularity</p>
                 </div>
                 <div className={styles['futuristic-pics']}>
-                    <img className={styles['futuristic-pic']} src={pic1} alt="futuristic 1" />
-                    <img className={styles['futuristic-pic']} src={pic2} alt="futuristic 2" />
+                    <img className={styles['futuristic-pics__item']} src={pic1} alt="futuristic 1" />
+                    <img className={styles['futuristic-pics__item']} src={pic2} alt="futuristic 2" />
                 </div>
             </div>
             <PostList />

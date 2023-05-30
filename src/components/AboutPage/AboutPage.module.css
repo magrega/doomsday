@@ -47,11 +47,12 @@
 .about-page__info-h3 {
     margin-bottom: 20px;
     padding-top: 52px;
-    font-size: 30px;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 
 .about-page__info-p {
+    font-size: 1.25rem;
     font-weight: 400;
 }
 
@@ -62,6 +63,7 @@
 @media (max-width: 768px) {
     .about-page {
         padding-left: 15px;
+        padding-bottom: 20px;
     }
 }
 
@@ -69,4 +71,11 @@
     .about-page__info-p {
         font-size: 1rem;
     }    
+}
+
+@media (max-width: 374px) {
+    .about-page__info-p {
+        font-size: 1rem;
+    }   
+   
 }

@@ -6,6 +6,10 @@
     padding-top: 10px;
 }
 
+.navbar__title {
+    font-size: 30px;
+}
+
 .navbar__btn {
     display: block;
     position: relative;
@@ -59,4 +63,10 @@
     .navbar__title {
         font-size: 22px;
     }
+}
+
+@media (max-width: 374px) {
+    .navbar__title {
+        font-size: 1.15rem;
+    }   
 }

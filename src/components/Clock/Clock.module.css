@@ -1,48 +1,56 @@
 .clock-container {
     margin-top: 128px;
-    font-family: 'Prata', 'Haskoy', serif;
-    font-size: 3.75rem;
+    font-size: 3rem;
 }
 
 .clock-container-aboutpage {
     padding-bottom: 20px;
-    font-family: 'Prata', 'Haskoy', serif;
     font-size: 1.3rem;
 }
 
-.time-space-fix {
+.clock-container__p {
+    font-family: 'Prata', serif;
+    font-size: inherit;
+}
+
+.time-space-fix, .time-space-fix-aboutpage {
     display: inline-block;
     text-align: center;
-    width: 4.5rem;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.time-space-fix {
+    width: 3.6rem;
 }
 
 @media (max-width: 1535px) {
     .clock-container {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
 
     .time-space-fix {
-        width: 3.5rem;
+        width: 3rem;
     }
 }
 
-@media (max-width: 1281px) {
+@media (max-width: 1335px) {
     .clock-container {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
     }
 
     .time-space-fix {
-        width: 2.5rem;
+        width: 2rem;
     }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1050px) {
     .clock-container {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .time-space-fix {
-        width: 1.9rem;
+        width: 1.5rem;
     }
 }
 
@@ -54,11 +62,11 @@
 
 @media (max-width: 429px) {
     .clock-container {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .time-space-fix {
-        width: 1.5rem;
+        width: 1.3rem;
     }
 
     .clock-container-aboutpage {
@@ -67,5 +75,24 @@
 
     .time-space-fix-aboutpage {
         width: 1.3rem;
+    }
+}
+
+
+@media (max-width: 375px) {
+    .clock-container {
+        font-size: .95rem;
+    }
+
+    .time-space-fix {
+        width: 1.25rem;
+    }
+
+    .clock-container-aboutpage {
+        font-size: .8rem;
+    }
+
+    .time-space-fix-aboutpage {
+        width: 1rem;
     }
 }

@@ -27,12 +27,12 @@ const Clock: FC<{aboutPage?: boolean}> = ({aboutPage}) => {
     return (
         <>
             <div className={aboutPage ? styles['clock-container-aboutpage'] : styles['clock-container']}>
-                <p>
+                <p className={styles['clock-container__p']}>
                     <span className={timeSpaceFixCSS}>{years}</span> {years === 1 ? 'year, ' : 'years, '}
                     <span className={timeSpaceFixCSS}>{months}</span> {months === 1 ? 'month, ' : 'months, '}
                     <span className={timeSpaceFixCSS}>{days}</span> {days === 1 ? 'day' : 'days'}
                 </p>
-                <p>
+                <p className={styles['clock-container__p']}>
                     <span className={timeSpaceFixCSS}>{padNum(hours)}</span>  {hours === 1 ? 'hour : ' : 'hours : '}
                     <span className={timeSpaceFixCSS}>{padNum(minutes)}</span>  {minutes === 1 ? 'minute : ' : 'minutes : '}
                     <span className={timeSpaceFixCSS}>{padNum(seconds)}</span> {seconds === 1 ? 'second' : 'seconds'}

@@ -10,9 +10,8 @@
 }
 
 .modal-window__p {
-    font-size: 20px;
-    font-weight: 400;
     margin-top: 34px;
+    font-weight: 400;
 }
 
 @media (max-height: 768px) {
