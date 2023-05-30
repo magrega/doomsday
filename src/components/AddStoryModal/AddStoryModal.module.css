@@ -1,4 +1,4 @@
-.modal-window input {
+.modal-window__input{
     margin: 34px 0;
     padding: 18px 16px;
     width: 100%;
@@ -9,33 +9,29 @@
     border-radius: 16px;
 }
 
-.modal-window span {
+.modal-window__p {
     font-size: 20px;
     font-weight: 400;
-}
-
-.add-story {
-   font: inherit;
-   color: inherit;
+    margin-top: 34px;
 }
 
 @media (max-height: 768px) {
-    .modal-window span {
+    .modal-window__p {
         font-size: 16px;
     }
 
-    .modal-window input {
+    .modal-window__input{
         font-size: 20px;
     }
 }
 
 @media (max-width: 430px) {
-    .modal-window input {
+    .modal-window__input{
         font-size: 16px;
         padding: 15px 10px;
     }
 
-    .modal-window span {
+    .modal-window__p {
         font-size: 16px;
         color: #818980;
     }

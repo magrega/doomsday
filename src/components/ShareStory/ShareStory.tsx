@@ -1,6 +1,6 @@
 import { FC, SyntheticEvent } from 'react';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
-import './ShareStory.css';
+import styles from './ShareStory.module.css';
 
 interface IShareStory {
     text: string;
@@ -15,10 +15,10 @@ const ShareStory: FC<IShareStory> = ({ text, id }) => {
     return (
         <>
             <p>share story in:</p>
-            <ul className='share-story__list' onClick={stopPropagation}>
+            <ul className={styles['share-story__list']} onClick={stopPropagation}>
                 <li>
                     <FacebookShareButton
-                        className='postitem-card__share-fb socials-container'
+                        className={`${styles['share-story__share-fb']} ${styles['socials-container']}`}
                         url={linkToClickedPost}
                         hashtag='#muo'
                     >
@@ -27,7 +27,7 @@ const ShareStory: FC<IShareStory> = ({ text, id }) => {
                 </li>
                 <li>
                     <TwitterShareButton
-                        className='postitem-card__share-tw socials-container'
+                        className={`${styles['share-story__share-tw']} ${styles['socials-container']}`}
                         title={text}
                         url={linkToClickedPost}
                         hashtags={['#muo', '#test']}
@@ -36,8 +36,8 @@ const ShareStory: FC<IShareStory> = ({ text, id }) => {
                     </TwitterShareButton>
                 </li>
                 <li
-                    className='postitem-card__share-copy socials-container'
-                    onClick={copylink}>
+                    className={`${styles['share-story__share-copy']} ${styles['socials-container']}`}
+                     onClick={copylink}>
                     <p>copy link</p>
                 </li>
             </ul>

@@ -35,6 +35,15 @@
     padding-top: 11px;
 }
 
+.link-container-aboutpage {
+    padding: 10px 10px 0 10px;
+    border: 1px solid #C9E1C5;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-bottom: none;
+    background-color: #1e212c;
+}
+
 .navbar .home-link {
     padding-top: 10px;
     font-size: 30px;
@@ -47,7 +56,7 @@
 }
 
 @media (max-width: 360px) {
-    .navbar span {
+    .navbar__title {
         font-size: 22px;
     }
 }

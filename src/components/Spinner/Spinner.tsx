@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { BeatLoader } from 'react-spinners';
-import './Spinner.css';
+import styles from './Spinner.module.css';
 
 const Spinner: FC = () => {
     return (
-        <div className='spinner-container'>
+        <div className={styles['spinner-container']}>
             <BeatLoader color='#C9E1C5' />
         </div>
     );

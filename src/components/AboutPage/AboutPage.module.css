@@ -6,15 +6,6 @@
     padding-right: 10px;
 }
 
-.about-page .link-container {
-    padding: 10px 10px 0 10px;
-    border: 1px solid #C9E1C5;
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
-    border-bottom: none;
-    background-color: #1e212c;
-}
-
 .about-page__info-wrapper {
     position: relative;
 } 
@@ -53,20 +44,15 @@
     font-weight: 500;
 }
 
-.about-page__info h3 {
+.about-page__info-h3 {
     margin-bottom: 20px;
     padding-top: 52px;
     font-size: 30px;
     font-weight: 500;
 }
 
-.about-page__info p {
+.about-page__info-p {
     font-weight: 400;
-}
-
-.about-page__info .clock-container {
-    padding-bottom: 20px;
-    font-size: 1.3rem;
 }
 
 .about-page__info .time-space-fix {
@@ -80,12 +66,7 @@
 }
 
 @media (max-width: 430px) {
-    .about-page__info .clock-container,  .about-page__info-text p {
+    .about-page__info-p {
         font-size: 1rem;
-    }
-    
-    .about-page__info .time-space-fix {
-        width: 1.3rem;
-    }
-    
+    }    
 }

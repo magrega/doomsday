@@ -1,13 +1,13 @@
-.clock-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .clock-container {
     margin-top: 128px;
     font-family: 'Prata', 'Haskoy', serif;
     font-size: 3.75rem;
+}
+
+.clock-container-aboutpage {
+    padding-bottom: 20px;
+    font-family: 'Prata', 'Haskoy', serif;
+    font-size: 1.3rem;
 }
 
 .time-space-fix {
@@ -47,11 +47,6 @@
 }
 
 @media (max-width: 850px) {
-    .clock-wrapper {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-    }
-
     .clock-container {
         margin-top: 0;
     }
@@ -64,5 +59,13 @@
 
     .time-space-fix {
         width: 1.5rem;
+    }
+
+    .clock-container-aboutpage {
+        font-size: 1rem;
+    }
+
+    .time-space-fix-aboutpage {
+        width: 1.3rem;
     }
 }

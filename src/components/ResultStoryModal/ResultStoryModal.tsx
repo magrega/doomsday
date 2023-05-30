@@ -4,7 +4,7 @@ import { getPost } from '../../services/fetchPosts';
 import ModalBase from '../ModalBase/ModalBase';
 import ShareStory from '../ShareStory/ShareStory';
 import Spinner from '../Spinner/Spinner';
-import './ResultStoryModal.css';
+import styles from './ResultStoryModal.module.css';
 
 interface IResultStoryModal {
   isResultOpen: boolean;
@@ -38,7 +38,7 @@ const ResultStoryModal: FC<IResultStoryModal> = ({ isResultOpen }) => {
   return (
     <>
       <ModalBase open={openResultModal} handleClose={handleClose}>
-        <div className='generate-result'>{isResultLoading ? <Spinner /> : post}</div>
+        <div className={styles['generate-result']}>{isResultLoading ? <Spinner /> : post}</div>
         <ShareStory text={post} id={id} />
       </ModalBase>
     </>

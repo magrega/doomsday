@@ -1,18 +1,20 @@
 import { FC } from 'react';
 import { Link, To } from 'react-router-dom';
-import './NavBar.css';
+import MainButton from '../MainButton/MainButton';
+import styles from './NavBar.module.css';
 
 interface NavBarProps {
     text: string;
     to: To;
+    aboutPage?: boolean;
 }
 
-const NavBar: FC<NavBarProps> = ({ text, to }) => {
+const NavBar: FC<NavBarProps> = ({ text, to, aboutPage }) => {
     return (
-        <div className='navbar'>
-             <Link className='home-link' to={'/'}><span>doomsday clock ai</span></Link>
-            <div className='link-container'>
-                <Link className='navbar__btn' to={to}>{text}</Link>
+        <div className={styles.navbar}>
+             <Link className={styles['home-link']} to={'/'}><span className={styles.navbar__title}>doomsday clock ai</span></Link>
+            <div className={aboutPage ? styles['link-container-aboutpage'] : styles['link-container']}>
+                <Link to={to}><MainButton text={text}/></Link>
             </div>
         </div>
     );

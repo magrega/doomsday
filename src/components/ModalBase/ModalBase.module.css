@@ -1,8 +1,8 @@
-.MuiBackdrop-root {
+:global .MuiBackdrop-root {
     backdrop-filter: blur(5px);
 }
 
-.modal-window.MuiBox-root {
+.MuiBox-root {
     position: absolute;
     max-width: 914px;
     padding: 30px;
@@ -25,11 +25,7 @@
     align-items: center;
 }
 
-.modal-window__top img {
-    cursor: pointer;
-}
-
-.modal-window h3 {
+.modal-window-h3 {
     display: inline;
     font-size: 30px;
     font-weight: 400;
@@ -40,7 +36,7 @@
         padding: 20px;
     }
     
-    .modal-window h3 {
+    .modal-window-h3 {
         font-size: 24px;
     }    
 }

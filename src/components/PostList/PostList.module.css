@@ -13,12 +13,12 @@
     margin-right: 16px;
 }
 
-.post-list__menu-left span.disabled {
+span.disabled {
     position: relative;
     color: #818980;
 }
 
-.post-list__menu-left span.sticker {
+span.sticker {
     display: inline-block;
     position: absolute;
     rotate: 15deg;
@@ -38,12 +38,17 @@
     margin-left: -20px;
 }
 
-.post-list__postitem-view .swiper {
+.swiper {
     padding-left: 20px;
 }
 
-.post-list__postitem-view .swiper-wrapper {
-    align-items: center;
+.swiper-slide {
+    max-width: 378px;
+}
+
+.post-item-spinner {
+    width: auto;
+    align-self: center;
 }
 
 @media (max-width: 768px) {
@@ -53,7 +58,7 @@
         margin-left: -15px;
     }
 
-    .post-list__postitem-view .swiper {
+    .swiper {
         padding-left: 10px;
     }
 }

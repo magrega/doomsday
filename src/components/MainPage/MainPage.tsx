@@ -2,22 +2,22 @@ import { FC, PropsWithChildren } from 'react';
 import Clock from '../Clock/Clock';
 import NavBar from '../NavBar/NavBar';
 import PostList from '../PostList/PostList';
-import './MainPage.css';
 import pic1 from '../../assets/img/pic1.png';
 import pic2 from '../../assets/img/pic2.png';
+import styles from './MainPage.module.css';
 
 const MainPage: FC<PropsWithChildren> = ({ children }) => {
     return (
-        <div className='main-page'>
-            <NavBar text='About' to='/about' />
-            <div className='clock-wrapper'>
+        <div className={styles['main-page']}>
+            <NavBar text='about' to='/about' />
+            <div className={styles['clock-wrapper']}>
                 <div>
                     <Clock />
-                    <p className='undertext'>ticking towards the AGI super intelligence singularity</p>
+                    <p className={styles.undertext}>ticking towards the AGI super intelligence singularity</p>
                 </div>
-                <div className='futuristic-pics'>
-                    <img className='futuristic-pics-1' src={pic1} alt="pic1" />
-                    <img className='futuristic-pics-2' src={pic2} alt="pic2" />
+                <div className={styles['futuristic-pics']}>
+                    <img className={styles['futuristic-pic']} src={pic1} alt="futuristic 1" />
+                    <img className={styles['futuristic-pic']} src={pic2} alt="futuristic 2" />
                 </div>
             </div>
             <PostList />

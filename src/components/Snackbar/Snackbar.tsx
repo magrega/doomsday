@@ -8,13 +8,11 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
 
 interface IErrorSnackbar {
     error: { state: boolean, errorText: string },
-    setError: ({ state, errorText }: {state: boolean; errorText: string}) => void
+    setError: ({ state, errorText }: { state: boolean; errorText: string }) => void
 }
 
 const ErrorSnackbar: FC<IErrorSnackbar> = ({ error, setError }) => {
     const [open, setOpen] = useState(error.state);
-    
-    
 
     const handleClose = (e?: SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') return;

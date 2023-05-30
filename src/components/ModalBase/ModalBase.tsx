@@ -1,8 +1,8 @@
 import { Box, Modal } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
-import CrossButton from '../../assets/icons/cross.svg';
-import './ModalBase.css';
 import { Link } from 'react-router-dom';
+import CrossButton from '../../assets/icons/cross.svg';
+import styles from './ModalBase.module.css';
 
 interface IModalBase {
     open: boolean;
@@ -19,9 +19,9 @@ const ModalBase: FC<PropsWithChildren<IModalBase>> = ({ open, handleClose, title
             aria-labelledby='child-modal-title'
             aria-describedby='child-modal-description'
         >
-            <Box className='modal-window'>
-                <div className='modal-window__top'>
-                    <h3>{title ?? 'share your story in our feed'}</h3>
+            <Box className={`${styles['modal-window']} ${styles['MuiBox-root']}`}>
+                <div className={styles['modal-window__top']}>
+                    <h3 className={styles['modal-window-h3']} >{title ?? 'share your story in our feed'}</h3>
                     <Link to={'/'}><img onClick={handleClose} src={CrossButton} alt='Close Button' /></Link>
                 </div>
                 {children}

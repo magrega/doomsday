@@ -8,7 +8,7 @@ import AddStoryModal from '../AddStoryModal/AddStoryModal';
 import PostItem from '../PostItem/PostItem';
 import ErrorSnackbar from '../Snackbar/Snackbar';
 import Spinner from '../Spinner/Spinner';
-import './PostList.css';
+import styles from './PostList.module.css';
 
 const PostList: FC = () => {
     const [swiperInstance, setSwiperInstance] = useState<SwiperType>();
@@ -68,23 +68,23 @@ const PostList: FC = () => {
 
     return (
         <>
-            <div className='post-list'>
-                <div className='post-list__menu'>
-                    <div className='post-list__menu-left'>
+            <div>
+                <div className={styles['post-list__menu']}>
+                    <div className={styles['post-list__menu-left']}>
                         <span onClick={scrollBackAndRefresh}>user stories</span>
-                        <span className='disabled'>
+                        <span className={styles.disabled}>
                             last change
-                            <span className='sticker'>soon</span>
+                            <span className={styles.sticker}>soon</span>
                         </span>
                     </div>
                     <AddStoryModal checkNewPosts={checkNewPosts} />
                 </div>
                 {loading.postFeed ? <Spinner /> :
-                    <div className='post-list__postitem-view'
+                    <div className={styles['post-list__postitem-view']}
                         onMouseEnter={disableScroll}
                         onMouseLeave={enableScroll}
                     >
-                        <Swiper
+                        <Swiper className={styles.swiper}
                             onSwiper={setSwiperInstance}
                             onTouchStart={onTouchStart}
                             onTouchEnd={onTouchEnd}
@@ -100,13 +100,13 @@ const PostList: FC = () => {
                                 momentumBounce: true
                             }}
                         >
-                            {loading.newPosts && <SwiperSlide className='post-item-spinner' key='spinner'><Spinner /></SwiperSlide>}
+                            {loading.newPosts && <SwiperSlide className={styles['post-item-spinner']} key='spinner'><Spinner /></SwiperSlide>}
                             {postsData && postsData.map((post: TStory) => {
-                                return <SwiperSlide key={post.id}>
+                                return <SwiperSlide className={styles['swiper-slide']} key={post.id}>
                                     <PostItem post={post} />
                                 </SwiperSlide>
                             })}
-                            {loading.oldPosts && <SwiperSlide className='post-item-spinner' key='spinner'><Spinner /></SwiperSlide>}
+                            {loading.oldPosts && <SwiperSlide className={styles['post-item-spinner']} key='spinner'><Spinner /></SwiperSlide>}
                         </Swiper>
                     </div>}
             </div>
