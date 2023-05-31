@@ -29,6 +29,7 @@
 
 .postitem-card__text {
     display: flex;
+    word-break: break-word;
 }
 
 .postitem-card__author {

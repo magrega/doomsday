@@ -19,7 +19,7 @@ const PostList: FC = () => {
 
     const checkNewPosts = () => {
         if (!error.state && !loading.postFeed) setLoading({ postFeed: false, newPosts: true, oldPosts: false });
-        getPosts(`?offset=0&limit=15`)
+        getPosts(`/?offset=0&limit=10`)
             .then(newPosts => {
                 newPosts && setPostsData([...newPosts.stories]);
                 setLoading({ postFeed: false, newPosts: false, oldPosts: false });
@@ -38,8 +38,8 @@ const PostList: FC = () => {
 
     const addOlderPosts = () => getPosts()
         .then(newPosts => {
-            setPostsData(prevState => [...(prevState ?? []), ...newPosts.stories]);
             newPosts.next_url === null ? setLimit(true) : setLimit(false);
+            setPostsData(prevState => [...(prevState ?? []), ...newPosts.stories]);
             setLoading({ postFeed: false, newPosts: false, oldPosts: false });
         })
         .catch(e => {
@@ -47,15 +47,12 @@ const PostList: FC = () => {
             setLoading({ postFeed: false, newPosts: false, oldPosts: false });
         });
 
-    const onTouchStart = (swiper: SwiperType) => {
-        if (swiper.progress === 1 && !limit) {
+    const onTouchEnd = (swiper: SwiperType) => {
+        if (swiper.progress < 0) checkNewPosts();
+        if (-swiper.translate > swiper.snapGrid[swiper.snapGrid.length - 1] + 100 && !limit) {
             setLoading({ postFeed: false, newPosts: false, oldPosts: true });
             addOlderPosts();
         }
-    }
-
-    const onTouchEnd = (swiper: SwiperType) => {
-        if (swiper.progress < -0.02) checkNewPosts();
     }
 
     const enableScroll = () => window.onscroll = null;
@@ -86,18 +83,16 @@ const PostList: FC = () => {
                     >
                         <Swiper className={styles.swiper}
                             onSwiper={setSwiperInstance}
-                            onTouchStart={onTouchStart}
                             onTouchEnd={onTouchEnd}
                             modules={[Mousewheel, FreeMode]}
                             mousewheel
                             spaceBetween={10}
                             slidesPerView='auto'
-                            passiveListeners={false}
+                            shortSwipes={false}
                             freeMode={{
                                 enabled: true,
-                                sticky: false,
-                                momentumRatio: 0.4,
-                                momentumBounce: true
+                                sticky: true,
+                                momentumRatio: 0
                             }}
                         >
                             {loading.newPosts && <SwiperSlide className={styles['post-item-spinner']} key='spinner'><Spinner /></SwiperSlide>}

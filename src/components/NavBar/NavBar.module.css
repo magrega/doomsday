@@ -53,7 +53,7 @@
     font-size: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar .link-container {
         padding-right: 10px;
     }

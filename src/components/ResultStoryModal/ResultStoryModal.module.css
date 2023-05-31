@@ -11,6 +11,7 @@
     overflow-y: scroll; /* scroll */
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    word-break: break-word;
 }
 
 .generate-result::-webkit-scrollbar {
