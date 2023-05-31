@@ -60,7 +60,7 @@ const PostList: FC = () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         window.onscroll = () => window.scroll({ top: scrollTop });
     }
-
+    // eslint-disable-next-line
     useEffect(() => { checkNewPosts(); }, []);
 
     return (
@@ -82,18 +82,16 @@ const PostList: FC = () => {
                         onMouseLeave={enableScroll}
                     >
                         <Swiper className={styles.swiper}
-                            onSwiper={setSwiperInstance}
-                            onTouchEnd={onTouchEnd}
-                            modules={[Mousewheel, FreeMode]}
-                            mousewheel
-                            spaceBetween={10}
-                            slidesPerView='auto'
-                            shortSwipes={false}
-                            freeMode={{
-                                enabled: true,
-                                sticky: true,
-                                momentumRatio: 0
-                            }}
+                        onSwiper={setSwiperInstance}
+                        onTouchEnd={onTouchEnd}
+                        modules={[Mousewheel, FreeMode]}
+                        spaceBetween={10}
+                        slidesPerView='auto'
+                        mousewheel
+                        freeMode={{
+                            enabled: true,
+                            sticky: true,
+                        }}
                         >
                             {loading.newPosts && <SwiperSlide className={styles['post-item-spinner']} key='spinner'><Spinner /></SwiperSlide>}
                             {postsData && postsData.map((post: TStory) => {

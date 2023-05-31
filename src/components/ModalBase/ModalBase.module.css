@@ -31,6 +31,10 @@
     font-weight: 400;
 }
 
+.modal-window__link {
+    display: contents;
+}
+
 @media (max-width: 430px) {
     .modal-window.MuiBox-root {
         padding: 20px;

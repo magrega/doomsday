@@ -42,6 +42,10 @@ span.sticker {
     padding-left: 20px;
 }
 
+:global .swiper-wrapper {
+
+}
+
 .swiper-slide {
     max-width: 378px;
 }

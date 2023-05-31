@@ -47,12 +47,12 @@ const AddStoryModal: FC<IAddStoryModal> = ({ checkNewPosts }) => {
       <span onClick={handleOpen}>{window.innerWidth < 500 ? "+ add" : "+ generate your story"}</span>
       <ModalBase open={openAddStoryModal} handleClose={handleClose} title='craft your story'>
         <form onSubmit={postStory}>
-          <input className={styles['modal-window__input']}
+          <input autoFocus={true} className={styles['modal-window__input']}
             required
             minLength={5}
             maxLength={300}
             type="text"
-            placeholder='enter a prompt to inspire your unique tale'
+            placeholder='enter text to inspire your tale'
             value={userInputValue}
             onChange={e => setUserInputValue(e.target.value)} />
           <MainButton text={buttonText}/>

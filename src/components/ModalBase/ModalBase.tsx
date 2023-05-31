@@ -22,7 +22,7 @@ const ModalBase: FC<PropsWithChildren<IModalBase>> = ({ open, handleClose, title
             <Box className={`${styles['modal-window']} ${styles['MuiBox-root']}`}>
                 <div className={styles['modal-window__top']}>
                     <h3 className={styles['modal-window-h3']} >{title ?? 'share your story in our feed'}</h3>
-                    <Link to={'/'}><img onClick={handleClose} src={CrossButton} alt='Close Button' /></Link>
+                    <Link className={styles['modal-window__link']} to={'/'}><img onClick={handleClose} src={CrossButton} alt='Close Button' /></Link>
                 </div>
                 {children}
             </Box>
