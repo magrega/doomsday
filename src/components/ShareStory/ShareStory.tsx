@@ -20,7 +20,7 @@ const ShareStory: FC<IShareStory> = ({ text, id }) => {
                     <FacebookShareButton
                         className={`${styles['share-story__share-fb']} ${styles['socials-container']}`}
                         url={linkToClickedPost}
-                        hashtag='#muo'
+                        hashtag='#test'
                     >
                         <p>fb</p>
                     </FacebookShareButton>
@@ -30,7 +30,7 @@ const ShareStory: FC<IShareStory> = ({ text, id }) => {
                         className={`${styles['share-story__share-tw']} ${styles['socials-container']}`}
                         title={text}
                         url={linkToClickedPost}
-                        hashtags={['#muo', '#test']}
+                        hashtags={['test']}
                     >
                         <p>tw</p>
                     </TwitterShareButton>
