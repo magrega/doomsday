@@ -4,7 +4,7 @@ let initialRequest = '/?offset=0&limit=15';
 
 const fetchData = async (url: string, method: string = 'GET', body?: string): Promise<any> => {
   try {
-    const _api = 'https://lobster-app-qoium.ondigitalocean.app/story';
+    const _api = process.env.REACT_APP_API_URL;
     const options: RequestInit = { method, headers: { 'Content-Type': 'application/json' } };
 
     if (body) options.body = body;

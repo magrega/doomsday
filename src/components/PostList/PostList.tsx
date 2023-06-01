@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import { FreeMode, Mousewheel, Swiper as SwiperType } from 'swiper';
-import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { TStory } from '../../App.types';
 import { getPosts } from '../../services/fetchPosts';
@@ -9,6 +8,7 @@ import PostItem from '../PostItem/PostItem';
 import ErrorSnackbar from '../Snackbar/Snackbar';
 import Spinner from '../Spinner/Spinner';
 import styles from './PostList.module.css';
+import 'swiper/css';
 
 const PostList: FC = () => {
     const [swiperInstance, setSwiperInstance] = useState<SwiperType>();
@@ -82,16 +82,16 @@ const PostList: FC = () => {
                         onMouseLeave={enableScroll}
                     >
                         <Swiper className={styles.swiper}
-                        onSwiper={setSwiperInstance}
-                        onTouchEnd={onTouchEnd}
-                        modules={[Mousewheel, FreeMode]}
-                        spaceBetween={10}
-                        slidesPerView='auto'
-                        mousewheel
-                        freeMode={{
-                            enabled: true,
-                            sticky: true,
-                        }}
+                            onSwiper={setSwiperInstance}
+                            onTouchEnd={onTouchEnd}
+                            modules={[Mousewheel, FreeMode]}
+                            spaceBetween={10}
+                            slidesPerView='auto'
+                            mousewheel
+                            freeMode={{
+                                enabled: true,
+                                sticky: true,
+                            }}
                         >
                             {loading.newPosts && <SwiperSlide className={styles['post-item-spinner']} key='spinner'><Spinner /></SwiperSlide>}
                             {postsData && postsData.map((post: TStory) => {

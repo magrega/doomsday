@@ -42,8 +42,8 @@ span.sticker {
     padding-left: 20px;
 }
 
-:global .swiper-wrapper {
-
+.swiper-scroll-lock:first-child {
+    touch-action: none;
 }
 
 .swiper-slide {
