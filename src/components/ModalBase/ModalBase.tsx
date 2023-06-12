@@ -9,6 +9,7 @@ interface IModalBase {
     handleClose?: () => void;
     title?: string;
 }
+//booby
 
 const ModalBase: FC<PropsWithChildren<IModalBase>> = ({ open, handleClose, title, children }) => {
 
