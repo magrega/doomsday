@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/doomsday/static/css/main.7fb0269c.css",
+    "main.js": "/doomsday/static/js/main.42f0c3ca.js",
+    "static/media/pic1.png": "/doomsday/static/media/pic1.a39025ffb70507d053b0.png",
+    "static/media/Haskoy-Medium.ttf": "/doomsday/static/media/Haskoy-Medium.f09ceea0012abc4bcc4e.ttf",
+    "static/media/Haskoy-SemiBold.ttf": "/doomsday/static/media/Haskoy-SemiBold.c2f3b1328e2273faabf3.ttf",
+    "static/media/Haskoy-Regular.ttf": "/doomsday/static/media/Haskoy-Regular.3f62e1ba28297554acb2.ttf",
+    "static/media/pic2.png": "/doomsday/static/media/pic2.b5561a1071032eba8af1.png",
+    "static/media/Prata-Regular.ttf": "/doomsday/static/media/Prata-Regular.7c12a175b9eef335fd0b.ttf",
+    "static/media/tw.svg": "/doomsday/static/media/tw.b209d4fbc04f544e9384.svg",
+    "static/media/copy.svg": "/doomsday/static/media/copy.6e289034d4020bdd7f8c.svg",
+    "index.html": "/doomsday/index.html",
+    "static/media/fb.svg": "/doomsday/static/media/fb.50d83f7774c3d84803ee.svg",
+    "static/media/starIcon.svg": "/doomsday/static/media/starIcon.d6e6a6eeeef3d9063eee5bbdecb8c4a3.svg",
+    "static/media/cross.svg": "/doomsday/static/media/cross.aef7bbe116e3dede5b2e49e840edaa6f.svg",
+    "main.7fb0269c.css.map": "/doomsday/static/css/main.7fb0269c.css.map",
+    "main.42f0c3ca.js.map": "/doomsday/static/js/main.42f0c3ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7fb0269c.css",
+    "static/js/main.42f0c3ca.js"
+  ]
+}
