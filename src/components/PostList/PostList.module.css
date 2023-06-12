@@ -50,8 +50,8 @@ span.sticker {
     max-width: 378px;
 }
 
-.post-item-spinner {
-    width: auto;
+.swiper-slide.swiper-slide__spinner {
+    width: auto; 
     align-self: center;
 }
 

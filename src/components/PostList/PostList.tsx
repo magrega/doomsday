@@ -93,13 +93,13 @@ const PostList: FC = () => {
                                 sticky: true,
                             }}
                         >
-                            {loading.newPosts && <SwiperSlide className={styles['post-item-spinner']} key='spinner'><Spinner /></SwiperSlide>}
+                            {loading.newPosts && <SwiperSlide className={`${styles['swiper-slide']} ${styles['swiper-slide__spinner']}`} key='spinner'><Spinner /></SwiperSlide>}
                             {postsData && postsData.map((post: TStory) => {
                                 return <SwiperSlide className={styles['swiper-slide']} key={post.id}>
                                     <PostItem post={post} />
                                 </SwiperSlide>
                             })}
-                            {loading.oldPosts && <SwiperSlide className={styles['post-item-spinner']} key='spinner'><Spinner /></SwiperSlide>}
+                            {loading.oldPosts && <SwiperSlide className={`${styles['swiper-slide']} ${styles['swiper-slide__spinner']}`} key='spinner'><Spinner /></SwiperSlide>}
                         </Swiper>
                     </div>}
             </div>
